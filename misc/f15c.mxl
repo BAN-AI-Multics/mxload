@@ -1,0 +1,13 @@
+Convert nonascii 8bit;
+Convert ascii discard;
+
+Acl file;
+Addname file;
+
+file	>user_dir_dir>SysMaint>Homan>f15c>read_tape_and_query;
+new_path .;
+conversion discard;
+
+subtree     >user_dir_dir>SysMaint>Homan;
+new_path .\load2;
+convert object 8bit+9bit;

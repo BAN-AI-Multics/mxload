@@ -1,0 +1,7 @@
+Addname file;
+Acl file;
+
+file >user_dir_dir>SiteSA>Homan>backup_test>exec_coms>upload.ec;
+ new_path \mxload\ecs_arc2;
+ acl discard;
+

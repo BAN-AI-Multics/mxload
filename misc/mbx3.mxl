@@ -1,0 +1,4 @@
+Convert ascii 8bit+9bit;
+file >user_dir_dir>Multics>Homan>mbxs>TeX.sv.mbx;
+ new_path tex.mbx;
+

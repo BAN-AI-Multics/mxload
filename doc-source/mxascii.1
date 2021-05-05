@@ -1,0 +1,32 @@
+.\"
+.\" Copyright (c) 1988 Oxford Systems, Inc.
+.\" All rights reserved.  The mxload license agreement specifies terms
+.\" and conditions for use.
+.\"
+.pl 10.7i
+.ds Mx Multics
+.ds Ux \s-1UNIX\s0
+.ds Um \s+1\f(BImxload\fP\s0 \fIUser's Manual\fP
+.ds Ml \fBmxload\fP
+.ds Ma \fBmxascii\fP
+.\"
+.ds ]W Oxford Systems, Inc.
+.\"
+.TH MXASCII 1 "1 December 1988"
+.SH NAME
+mxascii \- Re-processes reloaded \*(Mx segments
+.\"
+.SH SYNOPSIS
+.ft B
+mxascii  \fI9bit-file\fP  [\fI8bit-file\fP]
+.ft R
+.\"
+.SH DESCRIPTION
+\*(Mf converts a \*(Ux file that was reloaded by \*(Ml with 9bit
+conversion into the version that would have been created had it been
+reloaded with 8bit conversion.
+If \fI8bit-file\fP is not specified, the converted file is written to
+standard output.
+.SH "SEE ALSO"
+\*(Um, \fBmxload\fP(1)
+.\"

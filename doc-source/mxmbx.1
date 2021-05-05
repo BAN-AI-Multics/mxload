@@ -1,0 +1,185 @@
+.\"
+.\" Copyright (c) 1988, 1989 Oxford Systems, Inc.
+.\" All rights reserved.  The mxload license agreement specifies terms
+.\" and conditions for use.
+.\"
+.\" RELEASE VERSION NUMBER: 10 for 1.0 (12/88)
+.pl 10.7i
+.nr Vv 10
+.ds Mx Multics
+.ds Ux \s-1UNIX\s0
+.ds Um \s+1\f(BImxload\fP\s0 \fIUser's Manual\fP
+.ds Ml \fBmxload\fP
+.ds Mm \fBmxmbx\fP
+.ds Mp \fImailbox-path\fP
+.\"
+.ds ]W Oxford Systems, Inc.
+.\"
+.TH MXMBX 1 "1 December 1988"
+.SH NAME
+mxmbx \- Process a reloaded \*(Mx mailbox segment 
+.\"
+.SH SYNOPSIS
+.ft B
+mxmbx  [\-c \fIcontrol-file(s)\fP]  [\-tnrux]  \*(Mp  [\*(Mp .\ .\ .]
+.ft R
+.\"
+.SH DESCRIPTION
+.LP
+\*(Mm converts a \*(Mx mailbox that has been reloaded as a \*(Ux file
+by \*(Ml into a set of \*(Ux files containing the individual
+messages or into a single \*(Ux file containing all the
+messages.
+The \fI.\|mbx\fP suffix must be supplied.
+Four operations are supported:
+\fItable\fP (\fB\-t\fP),
+\fIextract\fP (\fB\-x\fP),
+\fIunpack\fP (\fB\-u\fP),
+and \fIrepack\fP (\fB\-r\fP);
+only one of the four may be specified.
+Multiple \*(Mp\fIs\fP may be specified; each is processed independently.
+This program works only on files that have been reloaded by
+\*(Ml, in 9bit conversion mode (which is \*(Ml's default
+mode of operation for this file type).
+.LP
+Messages are written to files in a similar format as they would be
+printed with \*(Mx read_mail's \fBprint\fP request.
+Each message is prefixed by an extra
+header containing the message segment control information, followed by
+the regular header, followed by the message text.
+.LP
+If the \fB\-u\fP option or \fB\-x\fP option is given, the messages
+are written one per file.
+Each file is named
+.\" ---------------- VERSION 10/11
+.if \n(Vv=10 ####.MSG, where ####
+.if \n(Vv>10 msg#####, where #####
+is the number of the message within the mailbox.
+If \fB\-u\fP is specified, the original \*(Mp file is replaced by a
+directory of the same name containing the message files.
+If \fB\-x\fP is specified, the original file is unaffected, and the
+message files are created in the current directory.
+.LP
+If the \fB\-r\fP option is given, a single file is created containing
+all the messages in succession, separated by control-L characters.
+This file replaces the original \*(Mp file.
+.LP
+By default, \*(Mm lists the files it is creating or writing into.
+The \fB\-n\fP option suppresses this.
+If \fB\-t\fP is specified, \*(Mm lists the files it would create as if
+they were being listed in brief form by \fBmxmap\fP.
+.LP
+The text of mail messages
+is assumed to be valid 8-bit ASCII.  If any non-8-bit characters are
+discovered, they are truncated.  A single warning message is generated for
+each \*(Mp for which this situation occurs.
+.\"
+.if \n(Vv=10 .ig Zz
+Each message text begins with a 6-line header containing the message
+segment control information.
+Each line
+consists of a field name followed by a colon, two spaces, and the value of the
+field.  These values are those that would have been returned on Multics in
+the mseg_return_args structure when the message was read.  Because the header
+is fixed size, it can easily be removed with \fIsed\fP(1).
+It has the following format:
+.LP
+.in +0.5i
+.ft L
+.ps -1
+\fLMS-Sender:  \fP\fIPerson.Project.Tag\fP
+\fLMS-Length:  \fP\fILength of message, in bits\fP
+\fLMS-Ring-Level:  \fP\fIRing from which message was sent\fP
+\fLMS-Message-ID:  \fP\fIOctal for 72-bit message unique ID\fP
+\fLMS-Authorization:  \fP\fIAIM Authorization of sender\fP
+\fLMS-Access-Class:  \fP\fIAIM Access Class of sender\fP
+.ps +1
+.in -0.5i
+.LP
+The Authorization and Access Class are normally displayed as "L:CCCCCC", where
+each character is an octal digit, and L represents the security level (from 0
+to 7) and CCCCCC is a six-digit representation of the \*(Mx categories.  If
+the access class for the object has non-zero bits outside the 21 normally
+used, the entire 72-bit access class is displayed in octal, following the
+L:CCCCCC value.
+.Zz
+.\" ----------------
+.LP
+The permissions, owner, and group (owner and group only when \*(Mm is
+run by \fBsuper-user\fP) for all resulting files are set
+equal to the corresponding attributes of the original \*(Mp file.
+The modification and access times of \*(Mp are preserved (saved and
+restored) by the \fB\-u\fP and \fB\-r\fP options; the \fB\-x\fP and
+\fB\-t\fP operations update the access time.
+The modification time fo each message file generated is set equal to the
+time the message was delivered to the mailbox, and the access time is
+set equal to original access time of the \*(Mp file.
+.LP
+The \fB\-c\fP option may be used to specify a control file that sets
+defaults for unpacking; normally, the standard \*(Ml defaults are
+used.
+Object statements and most option statements in the control file are
+ignored.
+.\"
+.SH OPTIONS
+.TP
+\fB\-c\fP  \fIcontrol-file\fP
+Use \fIcontrol-file\fP to specify options affecting the conversion,
+such as access control attributes.
+See \*(Um for details of control file syntax.
+.\"
+.TP
+\fB\-t\fP
+Specifies the \*Qtable\*U operation:
+produce a list of messages in the mailbox, without affecting
+the contents.
+Only one of \fB\-t\fP, \fB\-r\fP, \fB\-u\fP, and \fB\-x\fP may be
+specified.
+.\"
+.TP
+\fB\-r\fP
+Specifies the \*Qrepack\*U operation:
+replace the \*(Mp file with a file containing all the messages.
+.\"
+.TP
+\fB\-u\fP
+Specifies the \*Qunpack\*U operation:
+replace the \*(Mp file with individual files
+containing each message.
+.\"
+.TP
+\fB\-x\fP
+Specifies the \*Qextract\*U operation:
+extract messages from the \*(Mp file into individual files
+in the current directory.
+.\"
+.TP
+\fB\-n\fP
+Do not list files as they are created.
+.\"
+.SH ERRORS
+The conversion begins by validating the input file.  If it appears to be
+a mailbox, and to have been reloaded with 9bit conversion, the new
+file or directory is created, with a unique name.  If the conversion
+is successful, the input file is deleted, and the new file is renamed to
+the original file's name.  If an error occurs, nothing is deleted, and an
+error message is printed to identify the problem.
+.\"
+.SH FILES
+.TP
+\fB/tmp/mx??????\fP
+Temporary files used in conversion
+.\"
+.SH ENVIRONMENT
+.TP
+.SB TMP
+Directory where temporary files will be placed, default is \fB/tmp\fP. 
+Performance is enhanced by setting 
+.SB TMP
+to a directory in the same filesystem as the objects being reloaded,
+as this permits \*(Mm to use \fBrename\fP(2) to put objects in their
+final locations, rather than copying the contents.
+.\"
+.SH "SEE ALSO"
+\*(Um, \fBmxload\fP(1), \fBmxmap\fP(1)
+.\"

@@ -1,0 +1,58 @@
+Welcome to the mxload distribution directory.  Last revised November 2004.
+
+   Copyright (c) 1988, 1990, 1991, 1993, Oxford Systems, Inc.
+   All rights reserved.  Reproduction permitted provided this
+   notice is retained.
+
+The distribution contains the following subdirectories:
+   doc         - Reference manual source and manual pages (troff)
+   bin         - Executable programs built on SunOS 4.1.1
+
+   source      - Source code for building all mxload software
+   doc-source  - Source code for the manual pages and documents
+   misc        - Test cases
+
+To build mxload, "cd source" and type "make".  This builds all six commands:
+mxload, mxmap, mxarc, mxmbx, mxforum, and mxascii.  By default, debugging is
+enabled (-g option) and there is no optimization.  See the Makefile comments
+for information about other options.
+
+For details, see the mxload User's Manual in info/manual.pdf
+
+mxload is owned and distributed by:
+
+     Oxford Systems, Inc.
+     30 Ingleside Road
+     Lexington, Massachusetts
+     U. S. A.     02420-2522
+
+  Phone:   + 1 781 863 5549
+  E-mail:  osibert@siliconkeep.com
+
+
+This is version 1.1.  Revision history:
+
+ 1.1x   04-11-15  Released for general use.  No software changes.
+
+ 1.1    93-10-31  Major restructuring of I/O to support reading from standard
+                  input, needed for systems with poor tape device drivers
+		  (specifically, Sequent).  Minor memory management fixes.
+
+ 1.0.5  91-12-20  Bug fix for local map generation ("-l" option).
+
+ 1.0.4  91-12-03  Changed to make WORDALIGN the default in the Makefile (now
+                  works out of the box on SPARC, etc.).  Bug fix to WORDALIGN
+                  gettype.c to declare a missing variable and loop through 8
+                  bytes instead of 9.
+
+ 1.0.3  90-10-22  Bug fix to preserving broken archives as files, rather than
+                  discarding them.  Includes "WORDALIGN" definition in the
+		  Makefile to fix word alignment problems.
+
+ 1.0.2  89-10-24  Bug fix for mxmbx handling old (V4) message segments.
+
+ 1.0.1  89-05-26  Bug fix for tape buffer problems, revised documentation.
+
+ 1.0    89-01-13  Initial release
+
+(END)

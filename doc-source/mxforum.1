@@ -1,0 +1,198 @@
+.\"
+.\" Copyright (c) 1988, 1989 Oxford Systems, Inc.
+.\" All rights reserved.  The mxload license agreement specifies terms
+.\" and conditions for use.
+.\"
+.\" RELEASE VERSION NUMBER: 10 for 1.0 (12/88)
+.pl 10.7i
+.nr Vv 10
+.ds Mx Multics
+.ds Ux \s-1UNIX\s0
+.ds Um \s+1\f(BImxload\fP\s0 \fIUser's Manual\fP
+.ds Ml \fBmxload\fP
+.ds Mf \fBmxforum\fP
+.ds Fp \fIForum-path\fP
+.\"
+.ds ]W Oxford Systems, Inc.
+.\"
+.TH MXFORUM 1 "1 December 1988"
+.SH NAME
+mxforum \- Process reloaded \*(Mx Forum meeting(s)
+.\"
+.SH SYNOPSIS
+.ft B
+mxforum  [\-c \fIcontrol-file(s)\fP]  [\-trux] [\-n]  \*(Fp  [\*(Fp .\ .\ .]
+.ft R
+.\"
+.SH DESCRIPTION
+.LP
+\*(Mf converts a \*(Ux directory containing a \*(Mx Forum meeting, as
+reloaded by mxload, into a set of \*(Ux files containing the individual
+transactions or into a single \*(Ux file containing all the
+transactions.
+The \fI.\|forum\fP suffix must be supplied.
+Four operations are supported:
+\fItable\fP (\fB\-t\fP),
+\fIextract\fP (\fB\-x\fP),
+\fIunpack\fP (\fB\-u\fP),
+and \fIrepack\fP (\fB\-r\fP).
+Only one of the four may be specified.
+Multiple \*(Fp\fIs\fP may be specified; each is processed independently.
+This program works only if the files in the \*(Fp directories have been
+reloaded by \*(Ml, in 9bit conversion mode (which is \*(Ml's default
+mode of operation for this file type).
+.LP
+Transactions are written to files in much the same format as they would
+be printed with \*(Mx forum's \fLprint\fP request.
+A header line gives
+the transaction number (in brackets),
+the \*(Mx user ID of the transaction's submitter,
+and the date and time the transaction was entered.
+A second header line gives the subject.
+These are followed one or more lines containing the text of the
+transaction.
+The transaction is completed by a trailer line that repeats the
+transaction number (in brackets) and identifies the previous and next
+transactions (if any) in its chain.
+.LP
+If the \fB\-u\fP option or \fB\-x\fP option is given, the transactions
+are written one per file.
+Each file is named
+.\" ---------------- VERSION 10/11
+.if \n(Vv=10 ####.TXN, where ####
+.if \n(Vv>10 txn#####, where #####
+is the transaction number from the Forum meeting.
+If \fB\-u\fP is specified, the
+original files (named \fIProceedings.#\fP, \fIAttendees\fP, and
+\fITransactions\fP) in each Forum directory are deleted, and the
+directory is filled with the transaction files.
+If \fB\-x\fP is specified, those files are unaffected, and the
+transaction files are created in the current directory.
+.LP
+If the \fB\-r\fP option is given, a single file is created containing
+all the transactions in succession, separated by control-L characters.
+.\" ---------------- VERSION 10/11
+.if \n(Vv=10 This file is named Proceedings in the named Forum directory.
+.if \n(Vv>10 This file replaces the named Forum directory, and has 
+.if \n(Vv>10 the same name including the \fI.\|forum\fP suffix.
+The original files (named \fIProceedings.#\fP, \fIAttendees\fP, and
+\fITransactions\fP) in each Forum directory are deleted.
+.LP
+By default, \*(Mf lists the files it is creating or writing into.
+The \fB\-n\fP option suppresses this.
+If \fB\-t\fP is specified, \*(Mf lists the files it would create as if
+they were being listed in brief form by \fBmxmap\fP.
+.\"
+.\" ---------------- VERSION 10/11
+.if \n(Vv=10 .ig Zz
+.LP
+If the \fB\-a\fP option is specified,
+two auxiliary files will also be created.
+They are created in the original Forum directory if \fB\-u\fP is
+specified, or in the current directory otherwise.
+They are named \fINAME.attendees\fP and \fINAME.eligible\fP, where 
+\fINAME\fP is the name of the Forum directory,
+stripped of the \fI.\|forum\fP suffix.
+The \fI.\|attendees\fP file contains a list of all the participants
+of the Forum meeting with the participation date and last transaction
+seen, as would have been produced by 
+the \*(Mx Forum \fLlist_users\fP request.
+The \fI.\|eligible\fP file contains a list of all the Multics users
+eligible to participate in the Forum meeting
+as would have been produced by 
+the \*(Mx Forum \fLlist_users -eligible\fP request.
+.Zz
+.LP
+The text of Forum transactions
+is assumed to be valid 8-bit ASCII.  If any non-8-bit characters are
+discovered, they are truncated.  A single warning message is generated for
+each Forum directory in which this situation occurs.
+.LP
+.\" ---------------- VERSION 10/11
+.if \n(Vv=10 .ig Zz
+The permissions, owner, and group (owner and group only when \*(Mf is
+run by \fBsuper-user\fP) for all resulting files are set
+equal to the corresponding attributes of the original \*(Fp directory,
+with all the \fBX\fP permission bits set to zero.
+.Zz
+The modification time for each transaction file is set equal to the time the
+transaction was originally entered, or, if a single file is being
+generated, the last modification time of the original Forum meeting.
+.LP
+The \fB\-c\fP option may be used to specify a control file that sets
+defaults for unpacking; normally, the standard \*(Ml defaults are
+used.
+Object statements and most option statements in the control file are
+ignored.
+.\"
+.SH OPTIONS
+.TP
+\fB\-c\fP  \fIcontrol-file\fP
+Use \fIcontrol-file\fP to specify options affecting the conversion,
+such as access control attributes.
+See \*(Um for details of control file syntax.
+.\"
+.TP
+\fB\-t\fP
+Specifies the \*Qtable\*U operation:
+produce a list of transactions in the Forum meeting, without affecting
+the contents.
+Only one of \fB\-t\fP, \fB\-r\fP, \fB\-u\fP, and \fB\-x\fP may be
+specified.
+.\"
+.TP
+\fB\-r\fP
+Specifies the \*Qrepack\*U operation:
+replace the contents of the \*(Fp directory with a file containing all
+the transactions.
+.\"
+.TP
+\fB\-u\fP
+Specifies the \*Qunpack\*U operation:
+replace the contents of the \*(Fp directory with individual files
+containing each of the transactions.
+.\"
+.TP
+\fB\-x\fP
+Specifies the \*Qextract\*U operation:
+extract transactions from the \*(Fp directory into individual files
+in the current directory.
+.\"
+.\" ---------------- VERSION 10/11
+.if \n(Vv=10 .ig Zz
+.TP
+\fB\-a\fP
+Produce \fI.\|attendees\fP and \fI.\|eligible\fP files.
+.Zz
+.\"
+.TP
+\fB\-n\fP
+Do not list files as they are created.
+.\"
+.SH ERRORS
+The conversion begins by validating the input directory.  If it appears to be
+a Forum meeting, and to have been reloaded with 9bit conversion, the new
+file or directory is created, with a unique name.  If the conversion
+is successful, the input directory is deleted, and the new file is renamed to
+the original directory's name.  If an error occurs, nothing is deleted, and an
+error message is printed to identify the offending directory and component
+file.
+.\"
+.SH FILES
+.TP
+\fB/tmp/mx??????\fP
+Temporary files used in conversion
+.\"
+.SH ENVIRONMENT
+.TP
+.SB TMP
+Directory where temporary files will be placed, default is \fB/tmp\fP. 
+Performance is enhanced by setting 
+.SB TMP
+to a directory in the same filesystem as the objects being reloaded,
+as this permits \*(Mf to use \fBrename\fP(2) to put objects in their
+final locations, rather than copying the contents.
+.\"
+.SH "SEE ALSO"
+\*(Um, \fBmxload\fP(1), \fBmxmap\fP(1)
+.\"
