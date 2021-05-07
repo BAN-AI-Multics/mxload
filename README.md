@@ -88,6 +88,7 @@ E-mail:  osibert@siliconkeep.com
 
 ## TODO
 
+- Unbreak parallel build
 - Add test cases, `make test` target
 - `make install` target
 - Document build and runtime requirements
