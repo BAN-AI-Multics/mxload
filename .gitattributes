@@ -1,0 +1,7 @@
+Makefile linguist-vendored
+*.pdf    linguist-vendored
+*.mxl    linguist-vendored
+test/*   linguist-vendored
+*.tms    linguist-vendored
+*.1      linguist-vendored
+doc/*    linguist-vendored
