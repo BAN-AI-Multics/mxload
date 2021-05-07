@@ -2,9 +2,8 @@
 
 ## Overview
 
-The **mxload** software can read Multics standard-format tapes,
-reload data, produce maps, unpack archives, Forum meetings,
-message segments, and mailboxes.
+The **mxload** software can read Multics standard-format tapes, reload data,
+produce maps, unpack archives, Forum meetings, message segments, and mailboxes.
 
 ## License
 
@@ -16,27 +15,27 @@ Reproduction permitted provided this notice is retained.
 
 ## Distribution
 
-* `doc`
-  * Reference manual source code and manual pages (*troff*)
-* `pdf`
-  * Documentation and papers (*Portable Document Format*)
-* `src`
-  * Source code for building the **mxload** software
-* `test`
-  * Test cases
+- `doc`
+  - Reference manual source code and manual pages (_troff_)
+- `pdf`
+  - Documentation and papers (_Portable Document Format_)
+- `src`
+  - Source code for building the **mxload** software
+- `test`
+  - Test cases
 
 ## Build
 
-* To build **mxload**, type "`make`".
-  * This will build:
-    * `mxload`
-    * `mxmap`
-    * `mxarc`
-    * `mxmbx`
-    * `mxforum`
-    * `mxascii`
-    * `pr8bit`
-    * documentation
+- To build **mxload**, type "`make`".
+  - This will build:
+    - `mxload`
+    - `mxmap`
+    - `mxarc`
+    - `mxmbx`
+    - `mxforum`
+    - `mxascii`
+    - `pr8bit`
+    - documentation
 
 Review the `Makefile` contents for additional build information.
 
@@ -89,8 +88,9 @@ E-mail:  osibert@siliconkeep.com
 
 ## TODO
 
-* Add test cases, `make test` target
-* Fix groff warnings, nroff errors
-* Clean up Markdown output and Makefiles
-* Direct support for dps8m simulator and SIMH tapes
-* Review output of (and appease) ccc-analyzer
+- Add test cases, `make test` target
+- `make install` target
+- Fix groff warnings, nroff errors
+- Clean up Markdown output and Makefiles
+- Direct support for dps8m simulator and SIMH tapes
+- Review output of (and appease) ccc-analyzer
