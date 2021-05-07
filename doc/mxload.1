@@ -1,0 +1,168 @@
+.\"
+.\" Copyright (c) 1988 Oxford Systems, Inc.
+.\" All rights reserved.  The mxload license agreement specifies terms
+.\" and conditions for use.
+.\"
+.pl 10.7i
+.ds Mx Multics
+.ds Ux \s-1UNIX\s0
+.ds Um \s+1\f(BImxload\fP\s0 \fIUser's Manual\fP
+.ds Ml \fBmxload\fP
+.ds Mp \fI\*(Mx-Path\fP
+.ds Up \fI\*(Ux-Path\fP
+.ds Bd \fBbackup_dump\fP
+.ds As \s-1ASCII\s0
+.\"
+.ds ]W Oxford Systems, Inc.
+.\"
+.TH MXLOAD 1 "1 December 1988"
+.SH NAME
+mxload \- Reload from a \*(Mx \*(Bd tape into a \*(Ux system
+.\"
+.SH SYNOPSIS
+.ft B
+mxload  [\-c \fIcontrol-file(s)\fP]  [\-g \fImap-file\fP]  [\-blnvx]
+\ \ \fIdumpfile\fP  [\*(Mp  \*(Up ...]
+.ft R
+.\"
+.SH DESCRIPTION
+\*(Ml reloads \*(Mx files into a \*(Ux system.
+The \*(Mx files are usually read from a tape produced by the \*(Mx \*(Bd
+command, but may also be read from a disk image of the tape, or a file
+produced using the \*(Mx \fBbackup_preattach\fP command.
+The device (usually tape) or file from which to read is specified by
+the \fIdumpfile\fP argument.
+This may also specify a disk file that was previously transferred to
+\*(Ux with the \fBdd\fP command or some other means.
+.\"
+.SS Reload Control Files
+.\"
+Reloading options are specified by one or more control file (each
+named with a \fB\-c\fP option).
+The control files are processed in the order they are specified, and
+each may contain statements that override built-in \*(Ml
+defaults or options specified in earlier control files.
+The syntax \fB\-c\ \ \-\fP specifies that a control file is to be read
+from standard input.
+Details of control file syntax are found in the \*(Um.
+.LP
+\*(Mx subtrees, files, and directories to be reloaded may be specified
+either by statements in a control file or as pairs of command line
+arguments (\*(Mp and \*(Up).
+Something must always be specified for reloading:
+if there are no  \*(Mx object statements in any control files, there
+must be at least one pair of \*(Mp and \*(Up arguments, and if no
+\*(Mp and \*(Up arguments are specified, at least one control file
+must contain a \fBsubtree\fP, \fPfile\fP, or \fPdirectory\fP
+statement.
+The \*(Mp and \*(Up arguments must always occur in pairs, and the
+\*(Mp argument must always be enclosed in quotes (e.g.,
+\fB'>udd>\s-1ATMOS\s0'\fP) because it contains greater-than
+characters.
+.\"
+.SS Reload Operation
+.\"
+\*(Ml includes extensive support for conversion of native \*(Mx data
+formats to \*(Ux equivalents.
+A summary of the default conversions is:
+\*(Mx text segments, containing no non-\*(As characters (actually, no
+non-8bit characters; that is, no characters with values greater than
+255), are converted (in \fB8bit\fP format) directly to \*(Ux files.
+Non-\*(As segments may be converted in a bit-oriented (\fB9bit\fP)
+format that translates every eight \*(Mx bytes to nine \*(Ux bytes;
+whether this is done varies depending on the segment.
+.LP
+\*(Mx archives containing only \*(As data are automatically unpacked
+into directories containing a separate file for each archive component.
+\*(Mx archive segments containing non-\*(As data are, by default,
+converted in \fB9bit\fP format to individual \*(Ux files for later
+processing with \fBmxarc\fP.
+\*(Mx mailbox segments are, by default, converted in \fB9bit\fP format
+to individual \*(Ux files for later processing with \fBmxmbx\fP.
+\*(Mx message segments are, by default, discarded.
+\*(Mx object segments are, by default, discarded.
+All other non-\*(As \*(Mx segments are, by default, discarded.
+These conversions are described in detail in the \*(Um.
+.\"
+.SS Reload Maps and Lists
+.\"
+\*(Ml normally produces a reload map identifying the objects
+reloaded, and when finished, a list of any objects that were
+requested but not found on the tape.
+The map is normally written to standard output, but may be directed to
+a single file (the \fB\-g\fP option),
+written to individual files in each reloaded directory (the \fB\-l\fP option),
+or suppressed altogether (the \fB\-n\fP option).
+By default, the map identifies the \*(Mx object (by pathname), its new
+\*Ux pathname, how it was converted, and its size, access time, and
+modification time.
+The \fB\-v\fP option adds additional information about \*(Mx
+attributes that may be important on \*(Ux.
+The \fB\-x\fP option adds additional information about all remaining
+\*(Mx attributes.
+The map format is described in detail in the \*(Um.
+.LP
+In addition to the map, \*(Ml may be directed to produce (using
+\fBlist\fP statements in a control file) files listing all the \*(Mx
+links (in \fBmxload.link\fP), access control lists (in
+\fBmxload.acl\fP), and added names (in \fBmxload.name\fP).
+Like the map, these may be produced either in the working directory or
+separately in each directory reloaded.
+.\"
+.SH OPTIONS
+.TP
+\fB\-c\fP  \fIcontrol-file\fP
+Use \fIcontrol-file\fP to specify options or list objects to reload.
+.\"
+.TP
+\fB\-b\fP
+Brief: suppress warnings about reload object specifications that do
+not match any names on the tape.
+This is important for multiple tape reloads, since the object list may
+specify objects on different tapes.
+.\"
+.TP
+\fB\-g\fP  \fImap-file\fP
+Global map: write the \*(Ml reload map to the specified \fImap-file\fP.
+By default, the map is written to standard output.
+This overrides the \fB\-l\fP and \fB\-n\fP options.
+.\"
+.TP
+\fB\-l\fP
+Local map: write an individual reload map, named \fBmxload.map\fP, in
+each directory reloaded.
+This overrides the \fB\-g\fP and \fB\-n\fP options.
+.\"
+.TP
+\fB\-n\fP
+No map: do not produce a reload map.
+This overrides the \fB\-g\fP and \fB\-g\fP options.
+.\"
+.TP
+\fB\-v\fP
+Verbose map: produce additional attribute information for each object reloaded.
+.\"
+.TP
+\fB\-x\fP
+eXtremely verbose map: list all \*(Mx attribute information for
+each object reloaded.
+.\"
+.SH FILES
+.TP
+\fB/tmp/mx??????\\fP
+Temporary files used in conversion
+.\"
+.SH ENVIRONMENT
+.TP
+.SB TMP
+Directory where temporary files will be placed, default is \fB/tmp\fP. 
+Performance is enhanced by setting 
+.SB TMP
+to a directory in the same filesystem as the objects being reloaded,
+as this permits \*(Ml to use \fBrename\fP(2) to put objects in their
+final locations, rather than copying the contents.
+.\"
+.SH "SEE ALSO"
+\*(Um, \fBmxmap\fP(1), \fBmxarc\fP(1), \fBmxmbx\fP(1), \fBmxforum\fP,
+\fBmxascii\fP, \fBdd\fP(1)
+.\"

@@ -1,0 +1,55 @@
+.\"
+.\" Copyright (c) 1988 Oxford Systems, Inc.
+.\" All rights reserved.  The mxload license agreement specifies terms
+.\" and conditions for use.
+.\"
+.pl 10.7i
+.ds Mx Multics
+.ds Ux \s-1UNIX\s0
+.ds Um \s+1\f(BImxload\fP\s0 \fIUser's Manual\fP
+.ds Ml \fBmxload\fP
+.ds Mm \fBmxmap\fP
+.ds Mp \fI\*(Mx-Path\fP
+.ds Up \fI\*(Ux-Path\fP
+.ds Bd \fBbackup_dump\fP
+.\"
+.ds ]W Oxford Systems, Inc.
+.\"
+.TH MXMAP 1 "1 December 1988"
+.SH NAME
+mxmap \- Produce a map of a \*(Mx  \*(Bd tape
+.\"
+.SH SYNOPSIS
+.ft B
+mxload  [\-vx]  \fIdumpfile\fP
+.ft R
+.\"
+.SH DESCRIPTION
+\*(Mm produces a map listing the data on a \*(Mx \*(Bd tape (or the
+disk image of such a tape).
+This map is identical to that produced by \*(Ml, except that it does
+not list the new \*(Ux pathname or conversion type because the objects
+are not actually reloaded.
+The map is normally written to standard output, but may be redirected.
+By default, the map identifies the \*(Mx object (by pathname), its
+size, its access time, and its modification time.
+The \fB\-v\fP option adds additional information about \*(Mx
+attributes that may be important on \*(Ux.
+The \fB\-x\fP option adds additional information about all remaining
+\*(Mx attributes.
+The map format is described in detail in 
+the \fI\s+0mxload\s-0 User's Manual\fP.
+.\"
+.SH OPTIONS
+.TP
+\fB\-v\fP
+Verbose map: produce additional attribute information for each object reloaded.
+.\"
+.TP
+\fB\-x\fP
+eXtremely verbose map: list all \*(Mx attribute information for
+each object reloaded.
+.\"
+.SH "SEE ALSO"
+\*(Um, \fBmxload\fP(1)
+.\"
