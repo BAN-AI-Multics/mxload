@@ -7,10 +7,10 @@
 static void _CDECL copy_8bit();
 
 #ifdef ANSI_FUNC
-void _CDECL 
+int _CDECL 
 main (int argc, char *argv[])
 #else
-void _CDECL
+int _CDECL
 main(argc, argv)
 
 int argc;
@@ -22,10 +22,13 @@ char *argv[];
   {
     fprintf(stderr, "Usage: %s file\n", argv[0]);
     exit(1);
+	return( 1 );
   }
 
   copy_8bit(argv[1]);
+  return( 0 );
 }
+
 #ifdef ANSI_FUNC
 static void _CDECL 
 copy_8bit (char *contents_filename)
