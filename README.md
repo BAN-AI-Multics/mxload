@@ -7,7 +7,7 @@ produce maps, unpack archives, Forum meetings, message segments, and mailboxes.
 
 ## License
 
-Copyright (c) 1988, 1990, 1991, 1993, Oxford Systems, Inc.
+Copyright © 1988, 1990, 1991, 1993, Oxford Systems, Inc.
 
 All rights reserved.
 
@@ -90,7 +90,8 @@ E-mail:  osibert@siliconkeep.com
 
 - Add test cases, `make test` target
 - `make install` target
-- Fix groff warnings, nroff errors
+- Document build and runtime requirements
+- Fix groff warnings (and nroff errors)
 - Clean up Markdown output and Makefiles
 - Direct support for dps8m simulator and SIMH tapes
 - Review output of (and appease) ccc-analyzer
