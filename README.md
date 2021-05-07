@@ -90,6 +90,7 @@ E-mail:  osibert@siliconkeep.com
 ## TODO
 
 * Add test cases, `make test` target
+* `make install` target
 * Fix groff warnings, nroff errors
 * Clean up Markdown output and Makefiles
 * Direct support for dps8m simulator and SIMH tapes
