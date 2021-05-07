@@ -36,7 +36,7 @@ Reproduction permitted provided this notice is retained.
     * `mxforum`
     * `mxascii`
     * `pr8bit`
-        * documentation
+    * documentation
 
 Review the `Makefile` contents for additional build information.
 
