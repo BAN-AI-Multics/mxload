@@ -28,14 +28,14 @@
 #include "preamble.h"
 #include "timestr.h"
 
- /* 
+ /*
   * Read in pathname, seg type,
   * bitcount from structure described
   * in backup_preamble_header.incl.pl1
   */
 
 #ifdef ANSI_FUNC
-int 
+int
 get_preamble_min (MXBITFILE *preamble_file, struct PREAMBLE *preamble_ptr)
 #else
 int
@@ -53,7 +53,7 @@ struct PREAMBLE *preamble_ptr;
 
   rewind_mxbit_file(preamble_file, "rt");
 
-  /* 
+  /*
    * Top half of dlen,
    * a fixed bin (17)
    */
@@ -65,7 +65,7 @@ struct PREAMBLE *preamble_ptr;
   preamble_ptr->dname[dlen] = '\0';
   skip_mxbits(preamble_file, (long)(( 168 - dlen ) * 9 ));
 
-  /* 
+  /*
    * Top half of elen,
    * a fixed bin (17)
    */
@@ -80,7 +80,7 @@ struct PREAMBLE *preamble_ptr;
   overflow_long = get_36_mxbit_integer(preamble_file, long_pair);
   preamble_ptr->bitcnt = long_pair[1];
 
-  /* 
+  /*
    * Top half of record_type,
    * a fixed bin (17)
    */
@@ -99,7 +99,7 @@ struct PREAMBLE *preamble_ptr;
   */
 
 #ifdef ANSI_FUNC
-int 
+int
 get_branch_preamble (MXBITFILE *preamble_file, struct BRANCH_PREAMBLE *branch_preamble_ptr, struct PREAMBLE *preamble_ptr)
 #else
 int
@@ -166,7 +166,7 @@ struct PREAMBLE *preamble_ptr;
   if (preamble_ptr->record_type == DIRECTORY_RECORD)
   {
 
-        /* 
+        /*
          * Skip h.quota
          * thru h.pad1
          */
@@ -229,7 +229,7 @@ struct PREAMBLE *preamble_ptr;
   branch_preamble_ptr->access_class[3] =
     get_18_mxbit_integer(preamble_file);
 
-  /* 
+  /*
    * Skip h.spad thru
    * h.dir_inaclc
    */
@@ -237,14 +237,14 @@ struct PREAMBLE *preamble_ptr;
   skip_mxbits(preamble_file, 36L * 36L);
   get_mxstring(preamble_file, branch_preamble_ptr->bitcount_author, 32);
 
-  /* 
+  /*
    * Read branch structure from
    * backup_dir_list.incl.pl1
    */
 
   mxbit_pos(preamble_file, (long)( bp * 36L ));
 
-  /* 
+  /*
    * Skip br.vtoc_error
    * and pad1
    */
@@ -271,14 +271,14 @@ struct PREAMBLE *preamble_ptr;
   branch_preamble_ptr->dtbm = cvmxtime(long_pair);
   skip_mxbits(preamble_file, 16L);  /* Skip end of br.dtbm */
 
-  /* 
+  /*
    * Skip over br.access_class
    * thru br.nomore
    */
 
   skip_mxbits(preamble_file, 72L + 36L + 18L);
   branch_preamble_ptr->cur_length = get_9_mxbit_integer(preamble_file);
-  
+
   /*
    * Skip over br.ml thru
    * br.pad7
@@ -367,9 +367,9 @@ struct PREAMBLE *preamble_ptr;
  */
 
 #ifdef ANSI_FUNC
-int 
-get_dirlist_preamble (MXBITFILE *preamble_file, 
-                struct DIRLIST_PREAMBLE *dirlist_preamble_ptr, 
+int
+get_dirlist_preamble (MXBITFILE *preamble_file,
+                struct DIRLIST_PREAMBLE *dirlist_preamble_ptr,
                 struct PREAMBLE *preamble_ptr)
 #else
 int
@@ -392,14 +392,14 @@ struct PREAMBLE *preamble_ptr;
 
   rewind_mxbit_file(preamble_file, "rt");
 
-  /* 
+  /*
    * Skip over h.dlen through
    * h.record_type
    */
 
   skip_mxbits(preamble_file, 216L * 9L);
 
-  /* 
+  /*
    * Next field is a 72-bit clock value.
    * We pick off the 36 bits for
    * fstime and convert
@@ -428,7 +428,7 @@ struct PREAMBLE *preamble_ptr;
     return ( 0 );
   }
 
-  /* 
+  /*
    * Read link structure from
    * backup_dir_list.incl.pl1
    */
@@ -446,7 +446,7 @@ struct PREAMBLE *preamble_ptr;
   {
     link_ptr = dirlist_preamble_ptr->links + i;
 
-        /* 
+        /*
          * Time dumped on this tape, saved above.
          * Not DTD from dir entry
          */
@@ -497,7 +497,7 @@ struct PREAMBLE *preamble_ptr;
   {
     link_ptr = dirlist_preamble_ptr->links + i;
 
-        /* 
+        /*
          * Read name structure from
          * backup_dir_list.incl.pl1
          */

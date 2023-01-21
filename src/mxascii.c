@@ -11,7 +11,7 @@
 #define mxlexit_mxascii mxlexit
 #endif
 
- /* 
+ /*
   * Read a Multics file and translate
   * 9-bit ASCII to 8-bit
   */
@@ -26,7 +26,7 @@
 #include "mxbitio.h"
 
 #ifdef ANSI_FUNC
-int 
+int
 main_mxascii (int argc, char *argv[])
 #else
 int
@@ -82,7 +82,7 @@ char *argv[];
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 mxlexit_mxascii (int status)
 #else
 void

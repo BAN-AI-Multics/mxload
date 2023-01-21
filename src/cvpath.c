@@ -53,7 +53,7 @@ static  int make_or_find_renamed_dir();
 static void add_entryname();
 
 #ifdef ANSI_FUNC
-int 
+int
 cvpath (char *path, char *add_chars, char *type, char *new_path)
 #else
 int
@@ -74,7 +74,7 @@ char *new_path;
   char unique_entryname[40];
 
   /*
-   * Convert all names in path to 
+   * Convert all names in path to
    * appropriate format for system type
    */
 
@@ -115,7 +115,7 @@ char *new_path;
   */
 
 #ifdef ANSI_FUNC
-int 
+int
 make_new_path (char *dname, char *ename,
                 struct MXLOPTS *retrieval_options_ptr, char *add_chars,
                 char *name_type, char *new_path)
@@ -253,7 +253,7 @@ char *new_path;
  */
 
 #ifdef ANSI_FUNC
-static int 
+static int
 make_dirs (char *path, char *newpath, char *type)
 #else
 static int
@@ -331,7 +331,7 @@ char *type;
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 get_existing_dir (char *path, char *deepest_dir)
 #else
 static void
@@ -385,7 +385,7 @@ char *deepest_dir;
  */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 change_names (char *path, char *type, char *corrected_path)
 #else
 static void
@@ -459,13 +459,13 @@ char *corrected_path;
   }
 }
 
- /* 
+ /*
   * Convert to 8+3 character
   * MS-DOS entryname
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 make_msdos_name (char *entryname, char *corrected_entryname, char *addchars)
 #else
 static void
@@ -514,7 +514,7 @@ char *addchars;
     name[i++] = '-';
   }
 
-  /* 
+  /*
    * Put addchars at end of
    * first component
    */
@@ -526,7 +526,7 @@ char *addchars;
     strcat(name, addchars);
   }
 
-  /* 
+  /*
    * Get 3-letter
    * extenson
    */
@@ -547,7 +547,7 @@ char *addchars;
     strcat(corrected_entryname, extension);
   }
 
-  /* 
+  /*
    * Uppercase the final result and
    * get rid of double quotes and colons
    */
@@ -571,7 +571,7 @@ char *addchars;
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 make_cms_name (char *entryname, char *corrected_entryname, char *addchars)
 #else
 static void
@@ -610,7 +610,7 @@ char *addchars;
   }
 
   /*
-   * Put addchars at end 
+   * Put addchars at end
    * of first component
    */
 
@@ -621,7 +621,7 @@ char *addchars;
     strcat(name, addchars);
   }
 
-  /* 
+  /*
    * Get 8-letter
    * extenson
    */
@@ -656,13 +656,13 @@ char *addchars;
   }
 }
 
-/* 
+/*
  * Convert to 14-character
  * UNIX entryname
  */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 make_sysv_name (char *entryname, char *corrected_entryname, char *addchars)
 #else
 static void
@@ -684,7 +684,7 @@ char *addchars;
     strcat(corrected_entryname, addchars);
   }
 
-  /* 
+  /*
    * Get rid
    * of quotes
    */
@@ -704,7 +704,7 @@ char *addchars;
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 make_bsd_name (char *entryname, char *corrected_entryname, char *addchars)
 #else
 static void
@@ -735,7 +735,7 @@ char *addchars;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 get_entryname (char *path, char *entry)
 #else
 void
@@ -765,7 +765,7 @@ char *entry;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 get_directory (char *path, char *directory)
 #else
 void
@@ -796,7 +796,7 @@ char *directory;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 tack_on_chars (char *name, char *chars, char *type)
 #else
 static void
@@ -827,7 +827,7 @@ char *type;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 make_unique_entryname (char *dir, char *entryname, char *unique_entryname,
                 char *add_chars, char *type)
 #else
@@ -857,7 +857,7 @@ char *type;
 
   number = 0;
 
-  /* 
+  /*
    * Limit of 999 placed here to handle case
    * of using UNIX or BSD Name_type under MS-DOS,
    * which can result in loop due to fact that
@@ -879,7 +879,7 @@ char *type;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 make_or_find_renamed_dir (char *dir, char *entryname,
                 char *changed_entryname, char *type)
 #else
@@ -926,7 +926,7 @@ char *type;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 add_entryname (char *dir, char *entry)
 #else
 static void

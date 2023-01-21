@@ -5,7 +5,7 @@ struct ACL
      char           access_name[34];
 };
 
- /* 
+ /*
   * Information from
   * all preambles
   */
@@ -22,7 +22,7 @@ struct PREAMBLE
 };
 
 
- /* 
+ /*
   * Selected information from
   * backup records type 19 and 20
   */
@@ -47,7 +47,7 @@ struct BRANCH_PREAMBLE
 };
 
 
- /* 
+ /*
   * Selected information from
   * backup record type 3
   */
@@ -60,7 +60,7 @@ struct LINK
      unsigned long  dtu;                /* Date/time used */
      unsigned long  dtm;                /* Date/time modified */
      unsigned long  dtd;                /* Date/time dumped */
-     char           target[170];        
+     char           target[170];
 };
 
 struct DIRLIST_PREAMBLE

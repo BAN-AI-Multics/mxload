@@ -19,7 +19,7 @@ static char last_dir[170] = {
 };
 
 #ifdef ANSI_FUNC
-void 
+void
 display_branch_preamble (struct PREAMBLE *preamble_ptr,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr)
 #else
@@ -269,7 +269,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 display_dirlist_preamble (struct PREAMBLE *preamble_ptr,
                 struct DIRLIST_PREAMBLE *dirlist_preamble_ptr)
 #else
@@ -338,7 +338,7 @@ struct DIRLIST_PREAMBLE *dirlist_preamble_ptr;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 format_access_class (
     unsigned long access_class[4],     /* 18 bits stored in each long */
     char *access_class_string
@@ -378,13 +378,13 @@ char *access_class_string;
   }
 }
 
- /* 
+ /*
   * Write line on map output giving
   * conversion type and path
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 display_conversion_info (char *newpath, char *segtype, char *conversion_type)
 #else
 void

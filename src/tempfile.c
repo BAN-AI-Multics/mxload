@@ -54,7 +54,7 @@ char *comment;
   char filename[400];
   char *tmp_env_var;
 
-  /* 
+  /*
    * Initialize temp dir name
    * if this is first call
    */
@@ -77,7 +77,7 @@ char *comment;
     }
   }
 
-  /* 
+  /*
    * Look for an open
    * and available file
    */
@@ -125,13 +125,13 @@ char *comment;
   return( 0 );
 }
 
-/* 
+/*
  * Put a temporary file
  * back in the pool
  */
 
 #ifdef ANSI_FUNC
-void 
+void
 release_temp_file (MXBITFILE *tempfile, char *comment)
 #else
 void
@@ -164,7 +164,7 @@ char *comment;
  */
 
 #ifdef ANSI_FUNC
-void 
+void
 replace_temp_file (MXBITFILE *tempfile)
 #else
 void
@@ -199,7 +199,7 @@ MXBITFILE *tempfile;
   }
 }
 
- /* 
+ /*
   * Returns the actual pathname
   * of a temporary file, but
   * leaves it in the pool.
@@ -229,13 +229,13 @@ MXBITFILE *tempfile;
   return ( NULL );
 }
 
- /* 
+ /*
   * Delete all remaining
   * temporary files
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 cleanup_temp_files (void)
 #else
 void

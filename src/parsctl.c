@@ -296,7 +296,7 @@ int return_defaults; /*
          * Do the simulated subtree
          * statements from command-line args
          */
-        
+
     while (n_subtree_paths > 0)
     {
       if (first_opt_struct == NULL)
@@ -352,7 +352,7 @@ int return_defaults; /*
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 new_path_stmt (struct token *headptr, struct MXLOPTS *optptr)
 #else
 static void
@@ -384,8 +384,8 @@ struct MXLOPTS *optptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
-path_stmts (struct token *headptr, 
+static void
+path_stmts (struct token *headptr,
                 struct MXLOPTS *default_options_ptr, char *stmt_type,
                 struct MXLOPTS *file_opt_ptr)
 #else
@@ -427,7 +427,7 @@ struct MXLOPTS *file_opt_ptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 fake_subtree_and_new_path_stmts (struct MXLOPTS *default_options_ptr,
                 struct MXLOPTS *file_opt_ptr, char *multics_path, char *unix_path)
 #else
@@ -444,7 +444,7 @@ char *unix_path;
 
 {
 
-  /* 
+  /*
    * Simulate a subtree
    * statement
    */
@@ -463,8 +463,8 @@ char *unix_path;
 }
 
 #ifdef ANSI_FUNC
-static void 
-copy_options_struct (struct MXLOPTS *to_options_ptr, 
+static void
+copy_options_struct (struct MXLOPTS *to_options_ptr,
                 struct MXLOPTS *from_options_ptr)
 #else
 static void
@@ -475,11 +475,11 @@ struct MXLOPTS *to_options_ptr;
 #endif
 
 {
-  struct USER_TRANSLATION *default_opt_xlation_ptr;
-  struct USER_TRANSLATION *file_opt_xlation_ptr;
-  struct USER_TRANSLATION *prev_file_opt_xlation_ptr;
+  struct USER_TRANSLATION *default_opt_xlation_ptr = 0;
+  struct USER_TRANSLATION *file_opt_xlation_ptr = 0;
+  struct USER_TRANSLATION *prev_file_opt_xlation_ptr = 0;
 
-  /* 
+  /*
    * Set options structure equal to default
    * options structure, by copying
    * the structure, then the user translations
@@ -513,14 +513,14 @@ struct MXLOPTS *to_options_ptr;
   }
 }
 
-/* 
+/*
  * Parse convert statements of form
  *        "convert segment_type conversion_type;"
  * e.g.   "convert archive unpack;"
  */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 convert_stmt (struct token *headptr, struct MXLOPTS *optptr)
 #else
 static void
@@ -590,14 +590,14 @@ struct MXLOPTS *optptr;
   }
 }
 
-/* 
+/*
  * Parse list statements of form
  *        "list attribute list_type;"
  * e.g.   "list acl global;"
  */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 list_stmt (struct token *headptr, struct MXLOPTS *optptr)
 #else
 static void
@@ -664,7 +664,7 @@ struct MXLOPTS *optptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 attr_stmt (char *stmt_type, int attr_idx, struct token *headptr,
                 struct MXLOPTS *optptr)
 #else
@@ -710,7 +710,7 @@ struct MXLOPTS *optptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 force_convert_stmt (struct token *headptr, struct MXLOPTS *optptr)
 #else
 static void
@@ -754,7 +754,7 @@ struct MXLOPTS *optptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 reload_stmt (struct token *headptr, struct MXLOPTS *optptr)
 #else
 static void
@@ -799,7 +799,7 @@ struct MXLOPTS *optptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 access_stmt (struct token *headptr, struct MXLOPTS *optptr)
 #else
 static void
@@ -844,7 +844,7 @@ struct MXLOPTS *optptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 dataend_stmt (struct token *headptr, struct MXLOPTS *optptr)
 #else
 static void
@@ -889,7 +889,7 @@ struct MXLOPTS *optptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 user_stmt (struct token *headptr, struct MXLOPTS *optptr, char *stmt_type)
 #else
 static void
@@ -1044,7 +1044,7 @@ char *stmt_type;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 initialize_defaults (struct MXLOPTS *default_options)
 #else
 static void
@@ -1111,7 +1111,7 @@ char *line;
   while (1)
   {
 
-        /* 
+        /*
          * Pick
          * up token
          */
@@ -1142,7 +1142,7 @@ char *line;
       ++line_pos;
     }
 
-        /* 
+        /*
          * Pick up delimiter,
          * if any
          */
@@ -1167,7 +1167,7 @@ char *line;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 free_tokens (struct token *headptr)
 #else
 static void
@@ -1266,7 +1266,7 @@ char *keyword;
   */
 
 #ifdef ANSI_FUNC
-int 
+int
 count_keywords (char **keyword_array[])
 #else
 int
@@ -1287,7 +1287,7 @@ char **keyword_array[];
   return ( i - 1 );
 }
 
- /* 
+ /*
   * Function to search through a keyword_array
   * to find the keyword_values with the specified
   * keyword, returning the index of the
@@ -1295,7 +1295,7 @@ char **keyword_array[];
   */
 
 #ifdef ANSI_FUNC
-int 
+int
 get_keyword_values_index (char **keyword_array[], char *keyword)
 #else
 int
@@ -1353,7 +1353,7 @@ char *value;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 statement_must_follow_path_stmt (char *stmt_type)
 #else
 static void
@@ -1372,7 +1372,7 @@ char *stmt_type;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 invalid_syntax (char *stmt_type)
 #else
 static void
@@ -1388,7 +1388,7 @@ char *stmt_type;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 copy_token_str (char *target_str, int target_str_len, struct token *token_ptr)
 #else
 static void
@@ -1410,7 +1410,7 @@ struct token *token_ptr;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 check_tokens (struct token *headptr, int n_tokens_required)
 #else
 static int
@@ -1554,7 +1554,7 @@ FILE *ctl_file;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 getc_counting_lines (FILE *file)
 #else
 static int
@@ -1576,7 +1576,7 @@ FILE *file;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 ungetc_counting_lines (FILE *file, int c)
 #else
 static int
@@ -1597,7 +1597,7 @@ int c;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 display_line_no (void)
 #else
 static void
@@ -1613,7 +1613,7 @@ display_line_no()
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 display_statement (void)
 #else
 static void
@@ -1623,7 +1623,7 @@ display_statement()
   fprintf(stderr, "\tSOURCE:\t%s\n\n", cur_stmt);
 }
 
-/* 
+/*
  * Put file statements before
  * directory statements
  * before subtree statements
@@ -1646,7 +1646,7 @@ struct MXLOPTS *head;
 
   new_head = NULL;
 
-  /* 
+  /*
    * Move file statements
    * to new list
    */

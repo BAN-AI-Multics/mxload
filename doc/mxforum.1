@@ -73,7 +73,7 @@ If the \fB\-r\fP option is given, a single file is created containing
 all the transactions in succession, separated by control-L characters.
 .\" ---------------- VERSION 10/11
 .if \n(Vv=10 This file is named Proceedings in the named Forum directory.
-.if \n(Vv>10 This file replaces the named Forum directory, and has 
+.if \n(Vv>10 This file replaces the named Forum directory, and has
 .if \n(Vv>10 the same name including the \fI.\|forum\fP suffix.
 The original files (named \fIProceedings.#\fP, \fIAttendees\fP, and
 \fITransactions\fP) in each Forum directory are deleted.
@@ -90,16 +90,16 @@ If the \fB\-a\fP option is specified,
 two auxiliary files will also be created.
 They are created in the original Forum directory if \fB\-u\fP is
 specified, or in the current directory otherwise.
-They are named \fINAME.attendees\fP and \fINAME.eligible\fP, where 
+They are named \fINAME.attendees\fP and \fINAME.eligible\fP, where
 \fINAME\fP is the name of the Forum directory,
 stripped of the \fI.\|forum\fP suffix.
 The \fI.\|attendees\fP file contains a list of all the participants
 of the Forum meeting with the participation date and last transaction
-seen, as would have been produced by 
+seen, as would have been produced by
 the \*(Mx Forum \fLlist_users\fP request.
 The \fI.\|eligible\fP file contains a list of all the Multics users
 eligible to participate in the Forum meeting
-as would have been produced by 
+as would have been produced by
 the \*(Mx Forum \fLlist_users -eligible\fP request.
 .Zz
 .LP
@@ -186,8 +186,8 @@ Temporary files used in conversion
 .SH ENVIRONMENT
 .TP
 .SB TMP
-Directory where temporary files will be placed, default is \fB/tmp\fP. 
-Performance is enhanced by setting 
+Directory where temporary files will be placed, default is \fB/tmp\fP.
+Performance is enhanced by setting
 .SB TMP
 to a directory in the same filesystem as the objects being reloaded,
 as this permits \*(Mf to use \fBrename\fP(2) to put objects in their

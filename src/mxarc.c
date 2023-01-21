@@ -60,7 +60,7 @@ static int n_components;                /* Count of components to extract */
 static char renamed_archive[400] = "";
 
 #ifdef ANSI_FUNC
-int 
+int
 main_mxarc (int argc, char *argv[])
 #else
 int
@@ -147,7 +147,7 @@ char *argv[];
     mxlargs.map_file = fopen("/dev/null", "w");
   }
 
-  /* 
+  /*
    * Adjust arguments to skip over
    * program name and options, putting
    * position at archive file name
@@ -180,7 +180,7 @@ char *argv[];
   else
   {
 
-        /* 
+        /*
          * Get retrieval options.  Returns
          * default options only, i.e. builtin
          * defaults plus result of any global
@@ -190,7 +190,7 @@ char *argv[];
     retrieval_options_ptr
       = parsctl(n_control_files, control_files, 0, NULL, 1);
 
-        /* 
+        /*
          * Adjust the retrieval
          * options a bit.
          */
@@ -263,8 +263,8 @@ char *argv[];
     if (unpack_sw)
     {
 
-          /* 
-           * Rename the archive file to 
+          /*
+           * Rename the archive file to
            * make way for a new directory
            * before unpacking.
            */
@@ -345,13 +345,13 @@ char *argv[];
   return( 0 );
 }
 
- /* 
+ /*
   * Print
   * usage message
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 usage (void)
 #else
 static void
@@ -360,7 +360,7 @@ usage()
 {
   fprintf(stderr,
     "Usage: mxarc -t [options] archive_file ...\n");
-  fprintf(stderr, 
+  fprintf(stderr,
     "Or:    mxarc -u [options] archive_file ...\n");
   fprintf(stderr,
     "Or:    mxarc -x [options] archive_file [component ...]\n");
@@ -402,7 +402,7 @@ int sig;
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 mxlexit_mxarc (int status)
 #else
 void
@@ -447,7 +447,7 @@ int status;
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 process_seg_mxarc (MXBITFILE *infile,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr,
                 struct PREAMBLE *preamble_ptr,
@@ -580,7 +580,7 @@ int is_ascii;
   {
     if (!seg_has_been_read)
     {
-      rdseg(infile, NULL, preamble_ptr);  
+      rdseg(infile, NULL, preamble_ptr);
 
                 /*
                  * If seg has not already
@@ -662,7 +662,7 @@ EXIT:
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 process_ascii_seg_mxarc (struct BRANCH_PREAMBLE *branch_preamble_ptr,
                 MXBITFILE *contents_file, struct PREAMBLE *preamble_ptr,
                 struct MXLOPTS *retrieval_options_ptr)
@@ -717,7 +717,7 @@ struct MXLOPTS *retrieval_options_ptr;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 find_and_mark_in_list (char *list[], int n_entries, char *entry)
 #else
 static int
@@ -749,7 +749,7 @@ char *entry;
  */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 convert_seg (MXBITFILE *contents_file,
                 MXBITFILE *preconverted_contents_file,
                 struct PREAMBLE *preamble_ptr,
@@ -973,7 +973,7 @@ MXBITFILE *preconverted_contents_file;
  */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 put_in_place (MXBITFILE *contents_file, char *new_path,
                 int is_ascii, long charcount)
 #else
@@ -1010,7 +1010,7 @@ long charcount;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 set_attrs (char *new_path, struct MXLOPTS *retrieval_options_ptr,
                 struct PREAMBLE *preamble_ptr,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr)

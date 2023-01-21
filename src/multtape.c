@@ -19,7 +19,7 @@
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 read_tape_label (MXBITFILE *mxbitfile)
 #else
 void
@@ -39,7 +39,7 @@ MXBITFILE *mxbitfile;
   long data_bit_len;
   unsigned long flags;
 
-  /* 
+  /*
    * Read first 36 bits of file
    * to see if they contain the
    * magic constant 670314355245
@@ -61,7 +61,7 @@ MXBITFILE *mxbitfile;
 
   mxbitfile->tape_mult_sw = 1;
 
-  /* 
+  /*
    * See if this is
    * a label record
    */
@@ -104,7 +104,7 @@ MXBITFILE *mxbitfile;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 read_tape_record_header (MXBITFILE *mxbitfile)
 #else
 void
@@ -224,7 +224,7 @@ MXBITFILE *mxbitfile;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 read_tape_record_trailer (MXBITFILE *mxbitfile)
 #else
 void

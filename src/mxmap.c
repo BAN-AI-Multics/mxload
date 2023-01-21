@@ -29,7 +29,7 @@ struct MXLARGS mxlargs_mxmap;
 static void mxmap_usage();
 
 #ifdef ANSI_FUNC
-int 
+int
 main_mxmap (int argc, char *argv[])
 #else
 int
@@ -71,7 +71,7 @@ char *argv[];
 
   mxlargs.map_file = stdout;
 
-  /* 
+  /*
    * Adjust arguments to skip over
    * program name and options
    */
@@ -144,7 +144,7 @@ char *argv[];
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 mxlexit_mxmap (int status)
 #else
 void
@@ -158,13 +158,13 @@ int status;
   exit(status);
 }
 
- /* 
+ /*
   * Print usage
   * message
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 mxmap_usage (void)
 #else
 static void

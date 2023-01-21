@@ -16,11 +16,11 @@
 
 static int is_object_seg();
 
- /* 
-  * Look at suffix of segment's 
+ /*
+  * Look at suffix of segment's
   * entryname and find if it's an
   * archive, mailbox, or message
-  * segment.  Else return NULL. 
+  * segment.  Else return NULL.
   */
 
 #ifdef ANSI_FUNC
@@ -85,7 +85,7 @@ struct PREAMBLE *preamble_ptr;
  * few bytes of the segment will have been read before
  * we come across a 9-bit-byte with its high-order bit
  * on, so it's very unlikely that we will do a lot
- * of wasted preconversion. 
+ * of wasted preconversion.
  */
 
 #ifdef ANSI_FUNC
@@ -305,7 +305,7 @@ NONASCII:
   */
 
 #ifdef ANSI_FUNC
-static int 
+static int
 is_object_seg (MXBITFILE *infile, long bitcount)
 #else
 static int
@@ -331,14 +331,14 @@ long bitcount;
 
   mxbit_pos(infile, (long)bitcount - 36L);
 
-  /* 
+  /*
    * Read first half of last word
    * to get object map offset
    */
 
   object_map_offset = get_18_mxbit_integer(infile);
 
-  /* 
+  /*
    * Make sure the offset
    * is reasonable
    */
@@ -366,7 +366,7 @@ long bitcount;
     return ( 0 );
   }
 
-  /* 
+  /*
    * Next 2 words should
    * contain "obj_map"
    */

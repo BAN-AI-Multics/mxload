@@ -7,7 +7,7 @@
 static void _CDECL copy_8bit();
 
 #ifdef ANSI_FUNC
-int _CDECL 
+int _CDECL
 main (int argc, char *argv[])
 #else
 int _CDECL
@@ -30,7 +30,7 @@ char *argv[];
 }
 
 #ifdef ANSI_FUNC
-static void _CDECL 
+static void _CDECL
 copy_8bit (char *contents_filename)
 #else
 static void _CDECL
@@ -70,7 +70,7 @@ char *contents_filename;
 }
 
 #ifdef ANSI_FUNC
-void _CDECL 
+void _CDECL
 mxlexit (void)
 #else
 void _CDECL

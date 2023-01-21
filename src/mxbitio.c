@@ -35,8 +35,7 @@ static int put_byte();
 #define SEEK_SET 0
 #define SEEK_CUR 1
 
-int freadwrapper (unsigned char *ptr, int size, int nitems,
-                MXBITFILE *mxbitfile);
+int freadwrapper (char *ptr, int size, int nitems, MXBITFILE *mxbitfile);
 int fseekwrapper (MXBITFILE *mxbitfile, int n);
 int read_rewind (MXBITFILE *mxbitfile);
 int getcwrapper (MXBITFILE *mxbitfile);
@@ -137,12 +136,12 @@ char *mode;
       }
 #ifdef TAPEBUF
 
-          /* 
+          /*
            * The XPS's tape driver seems to require
            * that the file's buffer size be bigger
            * than the tape_mult_ tape block size,
            * which is 4680. Performance on other
-           * systems may be improved by using a big 
+           * systems may be improved by using a big
            * buffer, but on the Sun, use of setvbuf
            * does not seem to work at all for tape files.
            */
@@ -170,7 +169,7 @@ char *mode;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 rewind_mxbit_file (MXBITFILE *mxbitfile, char *mode)
 #else
 void
@@ -182,7 +181,7 @@ char *mode;
 
 {
   FILE *realfile;
-  int seek_result;
+  int seek_result = -1;
   MXBITFILE *temp_mxbitfile;
   char temp_path[400];
 
@@ -224,13 +223,13 @@ char *mode;
   }
 }
 
-/* 
+/*
  * Note that caller is responsible for
  * freeing the MXBITFILE structure
  */
 
 #ifdef ANSI_FUNC
-void 
+void
 close_mxbit_file (MXBITFILE *mxbitfile)
 #else
 void
@@ -243,7 +242,7 @@ MXBITFILE *mxbitfile;
   if (mxbitfile->write)
   {
 
-        /* 
+        /*
          * Write out any bits left
          * in the byte buffer
          */
@@ -272,7 +271,7 @@ MXBITFILE *mxbitfile;
   }
 }
 
-/* 
+/*
  * Returns number of bits actually
  * read, which is less than count if
  * end-of-file is reached or an error
@@ -280,15 +279,15 @@ MXBITFILE *mxbitfile;
  */
 
 #ifdef ANSI_FUNC
-long 
-get_mxbits (MXBITFILE *mxbitfile, long count, char *string)
+long
+get_mxbits (MXBITFILE *mxbitfile, long count, unsigned char *string)
 #else
 long
 get_mxbits(mxbitfile, count, string)
 
 MXBITFILE *mxbitfile;
 long count;
-char *string;
+unsigned char *string;
 #endif
 
 {
@@ -300,7 +299,7 @@ char *string;
   int next_byte;
   unsigned int n_read;
 
-  /* 
+  /*
    * First read full
    * bytes, if any
    */
@@ -318,7 +317,7 @@ char *string;
     {
 
           /*
-           * Special case tapes, 
+           * Special case tapes,
            * fighting for optimization.
            */
 
@@ -339,7 +338,7 @@ char *string;
 
         if (n_bytes_to_get <= mxbitfile->n_bytes_left_in_tape_block)
         {
-          n_read = freadwrapper(string, 1, n_bytes_to_get, mxbitfile);
+          n_read = freadwrapper((char *)string, 1, n_bytes_to_get, mxbitfile);
           if (n_read != n_bytes_to_get)
           {
             fprintf(
@@ -366,7 +365,7 @@ char *string;
       }
       else
       {
-        n_read = freadwrapper(string, 1, n_bytes_to_get, mxbitfile);
+        n_read = freadwrapper((char *)string, 1, n_bytes_to_get, mxbitfile);
         if (n_read != n_bytes_to_get)
         {
           if (!mxbitfile->temp_file)
@@ -437,7 +436,7 @@ char *string;
   */
 
 #ifdef ANSI_FUNC
-int 
+int
 put_mxbits (MXBITFILE *mxbitfile, int count, char *string)
 #else
 int
@@ -463,7 +462,7 @@ char *string;
   for (byteN = 0; byteN < n_bytes_to_put; ++byteN)
   {
 
-        /* 
+        /*
          * Write next 8 bits
          * from a byte
          */
@@ -520,7 +519,7 @@ char *string;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 putbit (MXBITFILE *mxbitfile, int bit)
 #else
 static int
@@ -553,7 +552,7 @@ int bit;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 get_mxstring (MXBITFILE *mxbitfile, char *string, int len)
 #else
 int
@@ -629,7 +628,7 @@ int len;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 mxbit_pos (MXBITFILE *mxbitfile, long pos)
 #else
 int
@@ -640,7 +639,7 @@ long pos;
 #endif
 
 {
-  int seek_result;
+  int seek_result = -1;
 
   if (mxbitfile->write)
   {
@@ -657,7 +656,7 @@ long pos;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 get_9_mxbit_integer (MXBITFILE *mxbitfile)
 #else
 int
@@ -691,7 +690,7 @@ MXBITFILE *mxbitfile;
     result = 0;
   }
 
-  /* 
+  /*
    * Stuff next 8 bits into
    * lower-order byte
    */
@@ -713,7 +712,7 @@ MXBITFILE *mxbitfile;
   return ( result );
 }
 
-/* 
+/*
  * Read a Multics 36-bit integer and
  * plug it into an array of 2 longs,
  * returning a non-zero value if
@@ -721,7 +720,7 @@ MXBITFILE *mxbitfile;
  */
 
 #ifdef ANSI_FUNC
-int 
+int
 get_36_mxbit_integer (MXBITFILE *mxbitfile,
                 unsigned long value[2])
 #else
@@ -745,13 +744,13 @@ unsigned long value[2];
   return ( high_order_bits_non_zero );
 }
 
- /* 
+ /*
   * Read a Multics 18-bit integer
   * in a C long integer (32 bits)
   */
 
 #ifdef ANSI_FUNC
-long 
+long
 get_18_mxbit_integer (MXBITFILE *mxbitfile)
 #else
 long
@@ -769,13 +768,13 @@ MXBITFILE *mxbitfile;
                 buffer[2] >> 6 );
 }
 
- /* 
+ /*
   * Read a Multics 24-bit integer
   * in a C long integer (32 bits)
   */
 
 #ifdef ANSI_FUNC
-long 
+long
 get_24_mxbit_integer (MXBITFILE *mxbitfile)
 #else
 long
@@ -794,7 +793,7 @@ MXBITFILE *mxbitfile;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 skip_mxbits (MXBITFILE *mxbitfile, long n_bits)
 #else
 int
@@ -885,7 +884,7 @@ long n_bits;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 first_bit_next_byte (MXBITFILE *mxbitfile)
 #else
 static int
@@ -918,7 +917,7 @@ MXBITFILE *mxbitfile;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 next_tape_byte (MXBITFILE *mxbitfile)
 #else
 static int
@@ -931,7 +930,7 @@ MXBITFILE *mxbitfile;
   int next_byte;
 
   /*
-   * For tape file, check for 
+   * For tape file, check for
    * end-of-reel or end-of-block
    */
 
@@ -942,7 +941,7 @@ MXBITFILE *mxbitfile;
       read_tape_record_trailer(mxbitfile);
       read_tape_record_header(mxbitfile);
 
-          /* 
+          /*
            * Subtract byte we're
            * about to read
            */
@@ -974,7 +973,7 @@ MXBITFILE *mxbitfile;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 eof_reached (MXBITFILE *mxbitfile)
 #else
 int
@@ -991,8 +990,8 @@ MXBITFILE *mxbitfile;
     return ( 1 );
   }
 
-  /* 
-   * For tape file, check for 
+  /*
+   * For tape file, check for
    * end-of-reel or end-of-block
    */
 
@@ -1031,9 +1030,8 @@ MXBITFILE *mxbitfile;
 }
 
 #ifdef ANSI_FUNC
-int 
-freadwrapper (unsigned char *ptr, int size, int nitems,
-                MXBITFILE *mxbitfile)
+int
+freadwrapper (char *ptr, int size, int nitems, MXBITFILE *mxbitfile)
 #else
 int
 freadwrapper(ptr, size, nitems, mxbitfile)
@@ -1089,7 +1087,7 @@ MXBITFILE *mxbitfile;
     {
 
           /*
-           * We've overflowed the buffer 
+           * We've overflowed the buffer
            * and won't be able to "rewind"
            * by using the buffer.
            */
@@ -1104,7 +1102,7 @@ MXBITFILE *mxbitfile;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 getcwrapper (MXBITFILE *mxbitfile)
 #else
 int
@@ -1136,7 +1134,7 @@ MXBITFILE *mxbitfile;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 fseekwrapper (MXBITFILE *mxbitfile, int n)
 #else
 int
@@ -1180,7 +1178,7 @@ int n;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 read_rewind (MXBITFILE *mxbitfile)
 #else
 int
@@ -1190,7 +1188,7 @@ MXBITFILE *mxbitfile;
 #endif
 
 {
-  int seek_result;
+  int seek_result = -1;
 
   if (mxbitfile->saved_input_ptr != NULL
       && mxbitfile->input_file_pos < INPUT_BUFFER_SIZE)

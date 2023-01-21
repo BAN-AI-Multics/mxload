@@ -34,7 +34,7 @@ static int get_message();
 static int write_as_9bit();
 
 #ifdef ANSI_FUNC
-int 
+int
 mxmseg (MXBITFILE *mseg_contents_file, struct PREAMBLE *mseg_preamble_ptr,
                 struct MXLOPTS *retrieval_opt_ptr,
                 struct BRANCH_PREAMBLE *mseg_branch_preamble_ptr, int repack,
@@ -224,7 +224,7 @@ char *seg_type;
   }
 }
 
-/* 
+/*
  * The calls to copy_bits in this routine turn out to be very expensive, but
  * there's not much that can be done.  Most of the blocks of data in message
  * segments are an odd number of words long (31 is the most frequent).  This
@@ -232,13 +232,13 @@ char *seg_type;
  * output.  Fixing write_as_9bit to pad its output to an even number of
  * Multics words makes sure that the data is properly aligned as often as
  * possible (speeding things up by perhaps 30% overall), but further
- * improvements would be difficult or impossible. 
+ * improvements would be difficult or impossible.
  */
 
 #ifdef ANSI_FUNC
-static int 
+static int
 get_message (MXBITFILE *mseg_contents_file,
-                MXBITFILE *message_contents_file, 
+                MXBITFILE *message_contents_file,
                 struct PREAMBLE *message_preamble_ptr,
                 struct BRANCH_PREAMBLE *message_branch_preamble_ptr,
                 int message_number, int is_mbx, int repacking)
@@ -284,7 +284,7 @@ int repacking;
   unsigned long long_pair[2];
   char access_class_string[128];
 
-  /* 
+  /*
    * If this is first message,
    * pick up its offset from mseg
    * header, else take offset remembered
@@ -390,7 +390,7 @@ int repacking;
   strcat(header_lines, print_buffer);
 
   /*
-   * Backup over message_descriptor.ms_id 
+   * Backup over message_descriptor.ms_id
    * and read it again as a time.
    */
 
@@ -401,8 +401,8 @@ int repacking;
 
   mxbit_pos(mseg_contents_file, (long)36L * block_offset);
   skip_mxbits(mseg_contents_file, (long)(( block_size - desc_size ) * 36 ));
-  
-  /* 
+
+  /*
    * And skip up to
    * message_descriptor.ms_id
    */
@@ -450,7 +450,7 @@ int repacking;
   ms_header_lines_length =
     write_as_9bit(message_contents_file, header_lines);
 
-  /* 
+  /*
    * And position back to header
    * of first block
    */
@@ -476,14 +476,14 @@ int repacking;
 
     block_bit_length = get_18_mxbit_integer(mseg_contents_file);
 
-        /* 
-         * Mask off 
+        /*
+         * Mask off
          * message_block_header.descriptor_present
          */
 
     block_bit_length &= 0x0001FFFFL;
 
-        /* 
+        /*
          * For mailboxes, the 468-bit mail format
          * header gets copied into temp file
          */
@@ -492,7 +492,7 @@ int repacking;
     {
       if (468L - mbx_header_n_read >= block_bit_length)
 
-          /* 
+          /*
            * Copy part of mail
            * format header
            */
@@ -514,7 +514,7 @@ int repacking;
       }
       else
 
-          /* 
+          /*
            * Copy last of mail
            * format header
            */
@@ -578,7 +578,7 @@ int repacking;
 
     block_offset = next_block_offset;
 
-        /* 
+        /*
          * Position to
          * next block
          */
@@ -594,8 +594,8 @@ int repacking;
   {
     rewind_mxbit_file(mbx_header_temp_file, "rt");
 
-        /* 
-         * Skip to 
+        /*
+         * Skip to
          * mail_format.text_len
          */
 
@@ -624,7 +624,7 @@ int repacking;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 write_as_9bit (MXBITFILE *message_contents_file, char *line)
 #else
 static int

@@ -6,7 +6,7 @@
 
  /* MXDEARC */
 
- /* 
+ /*
   * Process Multics
   * archive file
   */
@@ -37,7 +37,7 @@ void process_ascii_seg (struct BRANCH_PREAMBLE *branch_preamble_ptr,
 static char comp_contents_filename[400];
 
 #ifdef ANSI_FUNC
-int 
+int
 mxdearc (MXBITFILE *arc_contents_file, struct PREAMBLE *arc_preamble_ptr,
                 struct MXLOPTS *retrieval_opt_ptr,
                 struct BRANCH_PREAMBLE *arc_branch_preamble_ptr, int is_ascii)
@@ -68,7 +68,7 @@ int is_ascii;
     return ( -1 );
   }
 
-  /* 
+  /*
    * Construct preamble structures to be
    * used for each component in turn
    */
@@ -162,7 +162,7 @@ EXIT:
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 get_component (MXBITFILE *arc_contents_file, MXBITFILE *comp_contents_file,
                 struct PREAMBLE *comp_preamble_ptr,
                 struct BRANCH_PREAMBLE *comp_branch_preamble_ptr, int is_ascii)
@@ -296,7 +296,7 @@ int is_ascii;
 }
 
 #ifdef ANSI_FUNC
-static long 
+static long
 cv_arctime (char *time_string)
 #else
 static long

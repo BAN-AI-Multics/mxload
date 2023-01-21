@@ -82,7 +82,7 @@ int write_quoted_string (FILE *file, char *string);
 struct MXLARGS mxlargs_mxload;
 
 #ifdef ANSI_FUNC
-int 
+int
 main_mxload (int argc, char *argv[])
 #else
 int
@@ -297,7 +297,7 @@ char *argv[];
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 file_links (struct PREAMBLE *preamble_ptr,
                 struct DIRLIST_PREAMBLE *dirlist_preamble_ptr,
                 struct MXLOPTS *retrieval_options_ptr, int global_file)
@@ -327,7 +327,7 @@ int global_file;
     return;
   }
 
-  /* 
+  /*
    * Print links
    * information
    */
@@ -434,7 +434,7 @@ int global_file;
 
   fclose(links_file);
 
-  /* 
+  /*
    * Free link
    * information
    */
@@ -450,13 +450,13 @@ int global_file;
   free((char *)dirlist_preamble_ptr->links);
 }
 
-/* 
+/*
  * Print usage
  * message
  */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 usage ()
 #else
 static void
@@ -467,13 +467,13 @@ usage()
         "Usage: mxload [-options] dump_file ");
   fprintf(stderr,
     "['Mpath1' Upath1] ['Mpath2' Upath2 ...]\n" );
-  fprintf(stderr, 
+  fprintf(stderr,
         "\nOptions are:\n");
-  fprintf(stderr, 
+  fprintf(stderr,
         "-b\t\t= brief; suppress no-match warnings\n");
-  fprintf(stderr, 
+  fprintf(stderr,
         "-c control_file\t= control file; ");
-  fprintf(stderr, 
+  fprintf(stderr,
         "may be specified more than once\n");
   fprintf(stderr,
         "-g map_file\t= global map file; direct map to a file\n");
@@ -491,7 +491,7 @@ usage()
 }
 
 #ifdef ANSI_FUNC
-static SIGT 
+static SIGT
 onintr (int sig)
 #else
 static SIGT
@@ -509,7 +509,7 @@ int sig;
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 mxlexit_mxload (int status)
 #else
 void
@@ -545,10 +545,10 @@ int status;
   */
 
 #ifdef ANSI_FUNC
-void 
-process_seg (MXBITFILE *infile, 
-                struct BRANCH_PREAMBLE *branch_preamble_ptr, 
-                struct PREAMBLE *preamble_ptr, 
+void
+process_seg (MXBITFILE *infile,
+                struct BRANCH_PREAMBLE *branch_preamble_ptr,
+                struct PREAMBLE *preamble_ptr,
                 struct MXLOPTS *retrieval_options_ptr, int is_ascii)
 #else
 void
@@ -579,7 +579,7 @@ int is_ascii;
     return;
   }
 
-  /* 
+  /*
    * If user wants to disregard bitcount,
    * fix up the adjusted bitcount
    */
@@ -739,7 +739,7 @@ EXIT:
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 process_ascii_seg (struct BRANCH_PREAMBLE *branch_preamble_ptr,
                 MXBITFILE *contents_file, struct PREAMBLE *preamble_ptr,
                 struct MXLOPTS *retrieval_options_ptr)
@@ -792,14 +792,14 @@ struct MXLOPTS *retrieval_options_ptr;
     retrieval_options_ptr);
 }
 
- /* 
-  * Same as make_new_path, but returns fixed entryname, 
+ /*
+  * Same as make_new_path, but returns fixed entryname,
   * not one guaranteed to be unique by tacking #1, etc.
   * on it the way make_new_path does
   */
 
 #ifdef ANSI_FUNC
-static int 
+static int
 make_new_path_fixed_name (char *dname, char *ename,
                 struct MXLOPTS *retrieval_options_ptr, char *name_type,
                 char *new_path)
@@ -836,13 +836,13 @@ char *new_path;
   return ( 0 );
 }
 
- /* 
+ /*
   * Read segment from temp file and write
   * converted form into new path
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 convert_seg (MXBITFILE *contents_file,
                 MXBITFILE *preconverted_contents_file,
                 struct PREAMBLE *preamble_ptr,
@@ -878,7 +878,7 @@ MXBITFILE *preconverted_contents_file;
       && strcmp(seg_type, "ascii_archive") == 0)
   {
 
-        /* 
+        /*
          * Normal case for unpacking an ascii archive will be to pass
          * mxdearc the preconverted-to-8bit segment.  Unpacked components
          * will be passed to process_ascii_seg. However, in the unlikely
@@ -1136,14 +1136,14 @@ MXBITFILE *preconverted_contents_file;
   return;
 }
 
-/* 
+/*
  * Renames temporary file into permanent
  * position if possible, otherwise
  * it copies it into position.
  */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 put_in_place (MXBITFILE *contents_file, char *new_path, int is_ascii,
                 long charcount)
 #else
@@ -1180,7 +1180,7 @@ long charcount;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 set_attrs (char *new_path, struct MXLOPTS *retrieval_options_ptr,
                 struct PREAMBLE *preamble_ptr,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr)
@@ -1230,7 +1230,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
     utime_struct.actime = time(NULL);
   }
 
-  /* 
+  /*
    * Set the modification time
    * if requested
    */
@@ -1278,7 +1278,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
       0);
   }
 
-  /* 
+  /*
    * Determine personid.projectid
    * of segments "owner"
    */
@@ -1354,7 +1354,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
       0);
   }
 
-  /* 
+  /*
    * Translate the owner and group
    * names if requested
    */
@@ -1371,7 +1371,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 set_permission_bits (char *new_path,
                 struct MXLOPTS *retrieval_options_ptr, char *project_id,
                 char *person_id, struct PREAMBLE *preamble_ptr,
@@ -1429,7 +1429,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
   }
 
   /*
-   * Convert Multics modes in rew 
+   * Convert Multics modes in rew
    * order to Unix modes in rwx
    * order
    */
@@ -1441,8 +1441,8 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
   world_mode = ( world_mode & 0x04 ) | (( world_mode & 0x02 ) >> 1 )
                | (( world_mode & 0x01 ) << 1 );
 
-  /* 
-   * Bubble up world to 
+  /*
+   * Bubble up world to
    * group and owner,
    * group to owner
    */
@@ -1460,7 +1460,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 set_owner (char *new_path, struct USER_TRANSLATION *xlation_ptr,
                 char *project_id, char *person_id)
 #else
@@ -1598,7 +1598,7 @@ char *person_id;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 get_project (char *access_id, char *proj_id)
 #else
 static void
@@ -1625,7 +1625,7 @@ char *proj_id;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 get_person (char *access_id, char *pers_id)
 #else
 static void
@@ -1647,7 +1647,7 @@ char *pers_id;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 store_acl (char *new_path, struct MXLOPTS *retrieval_options_ptr,
                 struct PREAMBLE *preamble_ptr,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr, char *name_type,
@@ -1673,7 +1673,7 @@ int global_file;
   static FILE *acl_file = NULL;
   static char last_dir[170] = "";
 
-  /* 
+  /*
    * Make pathname for file mxload.acl
    * in new directory (if local directory
    * or subtree) or new_path directory
@@ -1714,7 +1714,7 @@ int global_file;
     }
   }
 
-  /* 
+  /*
    * Write line of form:
    * '<multics-name>' '<unix-name>' '<ACL-name-1>' <ACL-mode-1>
    * with any single quotes transformed into '"'"'.
@@ -1758,7 +1758,7 @@ int global_file;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 write_quoted_string (FILE *file, char *string)
 #else
 int
@@ -1788,7 +1788,7 @@ char *string;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 store_addnames (char *new_path, struct MXLOPTS *retrieval_options_ptr,
                 struct PREAMBLE *preamble_ptr,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr, char *name_type,
@@ -1903,7 +1903,7 @@ int global_file;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 check_file_matches (struct MXLOPTS *retrieval_list_ptr)
 #else
 static void
@@ -1937,7 +1937,7 @@ struct MXLOPTS *retrieval_list_ptr;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 open_local_map (char *dir, struct MXLOPTS *retrieval_options_ptr)
 #else
 static void

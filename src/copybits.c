@@ -13,7 +13,7 @@
 static unsigned char big_buffer[4608]; /* 1024 Multics words */
 
 #ifdef ANSI_FUNC
-int 
+int
 copy_to_empty_file (MXBITFILE *infile, MXBITFILE *outfile, long n_bits)
 #else
 int
@@ -68,7 +68,7 @@ long n_bits;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 copy_bits (MXBITFILE *infile, MXBITFILE *outfile, long n_bits)
 #else
 int
@@ -110,7 +110,7 @@ long n_bits;
  * Routine to convert a sequence of Multics 9-bit bytes into 8-bit bytes.
  * Usually this is for conversion of ascii data. This is done in a semi-
  * complicated way because metering has shown this routine to be very
- * important for performance. The main loop reads 72-bit chunks and 
+ * important for performance. The main loop reads 72-bit chunks and
  * converts the 8 9-bit bytes to 9 8-bit bytes. So, let's diagram this out
  * for clarity...here's how 8 9-bit bytes map onto 9 8-bit bytes:
  *
@@ -125,7 +125,7 @@ long n_bits;
  */
 
 #ifdef ANSI_FUNC
-void 
+void
 copy_8bit (MXBITFILE *contents_file, char *new_path, unsigned long bitcount)
 #else
 void
@@ -149,7 +149,7 @@ unsigned long bitcount;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 copy_8bit_to_file (MXBITFILE *contents_file, FILE *outfile, unsigned long bitcount)
 #else
 void
@@ -229,7 +229,7 @@ unsigned long bitcount;
 }
 
 #ifdef ANSI_FUNC
-void 
+void
 copy_file (MXBITFILE *contents_file, char *new_path, int is_ascii, long char_count)
 #else
 void

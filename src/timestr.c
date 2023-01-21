@@ -40,7 +40,7 @@ long *time;
  * to UNIX file system time
  */
 
-/* 
+/*
  * Multics time values are derived from the Multics system clock
  * which gives the number of microseconds since 1/1/1901 00:00 gmt.
  * In Unix, times are given as number of seconds since 1/1/1970 00:00 gmt.
@@ -78,7 +78,7 @@ long *time;
  */
 
 #ifdef ANSI_FUNC
-unsigned long 
+unsigned long
 cvmxtime (unsigned long long_pair[2])
 #else
 unsigned long
@@ -120,7 +120,7 @@ unsigned long long_pair[2];
   */
 
 #ifdef ANSI_FUNC
-long 
+long
 encodetm (struct tm *timeptr)
 #else
 long

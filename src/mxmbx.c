@@ -56,7 +56,7 @@ struct MXLARGS mxlargs_mxmbx;
 static char renamed_mbx[400] = "";
 
 #ifdef ANSI_FUNC
-int 
+int
 main_mxmbx (int argc, char *argv[])
 #else
 int
@@ -174,14 +174,14 @@ char *argv[];
         /*
          * Get retrieval options.  Returns default
          * options only, i.e. builtin defaults plus
-         * result of any global statements in 
+         * result of any global statements in
          * control files.
          */
 
     retrieval_options_ptr
       = parsctl(n_control_files, control_files, 0, NULL, 1);
 
-        /* 
+        /*
          * Adjust the retrieval
          * options a bit
          */
@@ -223,7 +223,7 @@ char *argv[];
         /*
          * Read what should be header of mailbox.
          * For MS-DOS, the translation of NL to CR-LF
-         * means that we cannot reliably read an 
+         * means that we cannot reliably read an
          * 8bit-ified mailbox.
          */
 
@@ -253,10 +253,10 @@ char *argv[];
     if (unpack_sw || repack_sw)
     {
 
-          /* 
+          /*
            * Rename the mailbox file to make way
            * for a new directory or file before
-           * unpacking or repacking. 
+           * unpacking or repacking.
            */
 
 #ifdef sun
@@ -298,7 +298,7 @@ char *argv[];
       repack_sw,
       "mbx");
 
-        /* 
+        /*
          * When unpacking or repacking,
          * delete the original mailbox
          */
@@ -328,7 +328,7 @@ char *argv[];
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 usage (void)
 #else
 static void
@@ -368,13 +368,13 @@ int sig;
   mxlexit(4);
 }
 
- /* 
+ /*
   * Exit after cleaning up.
   * Called by various subrs.
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 mxlexit_ (int status)
 #else
 void
@@ -394,10 +394,10 @@ int status;
 }
 
 #ifdef ANSI_FUNC
-void 
-process_seg_mxmbx (MXBITFILE *infile, 
-                struct BRANCH_PREAMBLE *branch_preamble_ptr, 
-                struct PREAMBLE *preamble_ptr, 
+void
+process_seg_mxmbx (MXBITFILE *infile,
+                struct BRANCH_PREAMBLE *branch_preamble_ptr,
+                struct PREAMBLE *preamble_ptr,
                 struct MXLOPTS *retrieval_options_ptr, int is_ascii)
 #else
 void
@@ -449,13 +449,13 @@ EXIT:
   release_temp_file(contents_file, "raw file contents");
 }
 
- /* 
+ /*
   * Read segment from temp file and write
   * converted form into new path
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 convert_seg (MXBITFILE *contents_file,
                 MXBITFILE *preconverted_contents_file,
                 struct PREAMBLE *preamble_ptr,
@@ -512,7 +512,7 @@ MXBITFILE *preconverted_contents_file;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 set_attrs (char *new_path, struct MXLOPTS *retrieval_options_ptr,
                 struct PREAMBLE *preamble_ptr,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr)
@@ -544,8 +544,8 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
                                             attr_cv_types,
                                             "name_type")];
 
-       /* 
-        * Set the access time 
+       /*
+        * Set the access time
         * if requested
         */
 
@@ -562,7 +562,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
     utime_struct.actime = time(NULL);
   }
 
-       /* 
+       /*
         * Set the modification time
         * if requested
         */

@@ -4,7 +4,7 @@
  *    and Oxford Systems, Inc.    *
  \********************************/
 
- /* 
+ /*
   * Routines to read a backup logical record.
   * The header is read into a temporary file by
   * rdbkrcd and the segment contents are either
@@ -26,7 +26,7 @@
 static int find_backup_logical_record();
 
 #ifdef ANSI_FUNC
-int 
+int
 rdbkrcd (MXBITFILE *infile, MXBITFILE *preamble_file,
                 struct PREAMBLE *preamble_ptr)
 #else
@@ -114,7 +114,7 @@ struct PREAMBLE *preamble_ptr;
 }
 
 #ifdef ANSI_FUNC
-int 
+int
 rdseg (MXBITFILE *infile, MXBITFILE *contents_file,
                 struct PREAMBLE *preamble_ptr)
 #else
@@ -128,7 +128,7 @@ struct PREAMBLE *preamble_ptr;
 
 {
 
-  /* 
+  /*
    * Copy segment contents
    * to temp file
    */
@@ -138,7 +138,7 @@ struct PREAMBLE *preamble_ptr;
     return ( 0 );
   }
 
-  /* 
+  /*
    * Null file means to skip data
    * away instead of reading it
    */
@@ -188,7 +188,7 @@ struct PREAMBLE *preamble_ptr;
   */
 
 #ifdef ANSI_FUNC
-static int 
+static int
 find_backup_logical_record (MXBITFILE *infile)
 #else
 static int
@@ -226,7 +226,7 @@ z z z z z z z z z z z z z z z z";
            * Skip 36 bits for preamble length
            * + 36 bits for segment length
            */
-        
+
       skip_mxbits(infile, 72L);
       fprintf(
         stderr,

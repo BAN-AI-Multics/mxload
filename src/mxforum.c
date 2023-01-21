@@ -6,7 +6,7 @@
 
  /* MXFORUM */
 
- /* 
+ /*
   * Read Multics forums and retrieve
   * transactions. This is basically a
   * lobotomized version of mxmbx.
@@ -78,7 +78,7 @@ static MXBITFILE *proceedings_files[100];
 static int proceedings_file_is_8bit[100];
 
 #ifdef ANSI_FUNC
-int 
+int
 main_mxforum (int argc, char *argv[])
 #else
 int
@@ -195,7 +195,7 @@ char *argv[];
   else
   {
 
-        /* 
+        /*
          * Get retrieval options.  Returns default
          * options only, i.e. builtin defaults
          * plus result of any global statements
@@ -205,7 +205,7 @@ char *argv[];
     retrieval_options_ptr
       = parsctl(n_control_files, control_files, 0, NULL, 1);
 
-        /* 
+        /*
          * Adjust the retrieval
          * options a bit.
          */
@@ -302,7 +302,7 @@ char *argv[];
       &branch_preamble,
       repack_sw);
 
-        /* 
+        /*
          * When unpacking or repacking, delete
          * the original forum directory contents
          */
@@ -335,13 +335,13 @@ char *argv[];
   return ( 0 );
 }
 
- /* 
+ /*
   * Print usage
   * transaction
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 usage (void)
 #else
 static void
@@ -378,7 +378,7 @@ usage()
 }
 
 #ifdef ANSI_FUNC
-static SIGT 
+static SIGT
 onintr (int sig)
 #else
 static SIGT
@@ -396,7 +396,7 @@ int sig;
   */
 
 #ifdef ANSI_FUNC
-void 
+void
 mxlexit_mxforum (int status)
 #else
 void
@@ -411,7 +411,7 @@ int status;
 }
 
 #ifdef ANSI_FUNC
-static int 
+static int
 mxmtg (MXBITFILE *txn_file, char *forum_dir,
                 struct PREAMBLE *forum_preamble_ptr,
                 struct MXLOPTS *retrieval_opt_ptr,
@@ -585,7 +585,7 @@ int repack;
   */
 
 #ifdef ANSI_FUNC
-static long 
+static long
 get_txn (MXBITFILE *tx_file, long txn_pos, struct TXN *txn_ptr,
                 struct PREAMBLE *preamble_ptr,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr, char *forum_dir,
@@ -642,7 +642,7 @@ FILE *f;
     txn_ptr->pref_pos = get_18_mxbit_integer(tx_file) * 36L;
     txn_ptr->nref_pos = get_18_mxbit_integer(tx_file) * 36L;
     skip_mxbits(tx_file, 9L);  /* Undeclared padding */
-        
+
         /*
          * Message_descriptor.ms_id is a 72-bit
          * clock value.  We pick off the 36 bits
@@ -824,14 +824,14 @@ FILE *f;
   return ( next_pos );
 }
 
- /* 
+ /*
   * Renames temporary file into permanent
-  * position if possible, otherwise it 
+  * position if possible, otherwise it
   * copies it into position.
   */
 
 #ifdef ANSI_FUNC
-static void 
+static void
 put_in_place (MXBITFILE *contents_file, char *new_path, int is_ascii,
                 long charcount)
 #else
@@ -868,7 +868,7 @@ long charcount;
 }
 
 #ifdef ANSI_FUNC
-static void 
+static void
 set_attrs (char *new_path, struct MXLOPTS *retrieval_options_ptr,
                 struct PREAMBLE *preamble_ptr,
                 struct BRANCH_PREAMBLE *branch_preamble_ptr)
@@ -900,7 +900,7 @@ struct BRANCH_PREAMBLE *branch_preamble_ptr;
                                             attr_cv_types,
                                             "name_type")];
 
-  /* 
+  /*
    * Set the access time
    * if requested
    */

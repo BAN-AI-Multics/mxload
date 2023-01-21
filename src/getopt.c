@@ -1,4 +1,4 @@
- /* 
+ /*
   * This version of getopt is taken from
   * "Proficient C" by Augie Hansen
   */
