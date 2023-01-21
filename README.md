@@ -88,11 +88,9 @@ E-mail:  osibert@siliconkeep.com
 
 ## TODO
 
-- Unbreak parallel build
 - Add test cases, `make test` target
 - `make install` target
 - Document build and runtime requirements
 - Fix groff warnings (and nroff errors)
-- Clean up Markdown output and Makefiles
 - Direct support for dps8m simulator and SIMH tapes
 - Review output of (and appease) ccc-analyzer
