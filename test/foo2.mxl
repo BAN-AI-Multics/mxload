@@ -3,4 +3,3 @@ new_path \mxload\upload.ec;
 conversion 8bit+9bit;
 directory >user_dir_dir>SiteSA>Homan>backup_test>exec_coms;
 new_path .;
-
