@@ -56,6 +56,9 @@ E-mail:  osibert@siliconkeep.com
 ## Release History
 
 ```text
+
+ 1.2a2  2023-01-23   Clean up  some warnings  and a fix a possible  crash.
+
  1.2a1  2021-06-05   Automated  reformatting,   restyling,   source   code
                      normalization,  Markdown  conversion,   and  Makefile
                      generation.  Supports  only POSIX-like UNIX  systems.
