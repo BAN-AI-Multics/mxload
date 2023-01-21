@@ -57,6 +57,8 @@ E-mail:  osibert@siliconkeep.com
 
 ```text
 
+ 1.2a3  2023-01-23   Make WORDALIGN the default  again in src/GNUmakefile.
+
  1.2a2  2023-01-23   Clean up  some warnings  and a fix a possible  crash.
 
  1.2a1  2021-06-05   Automated  reformatting,   restyling,   source   code
