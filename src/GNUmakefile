@@ -10,7 +10,7 @@ MORE_CFLAGS  += -Wno-unused-function
 MORE_CFLAGS  += -Wno-unused-variable
 MORE_CFLAGS  += -Wno-unused-but-set-variable
 MORE_CFLAGS  += -DHAVE_MKSTEMP=1
-#MORE_CFLAGS += -DWORDALIGN=1
+MORE_CFLAGS  += -DWORDALIGN=1
 ##############################################################################
 RM           ?= rm -f
 MV           ?= mv -f
