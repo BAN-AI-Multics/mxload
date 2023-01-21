@@ -89,7 +89,7 @@ char *argv[];
   int n_mbxs;
   int mxmseg_result;
   struct stat statbuf;
-  int rename_result;
+  int rename_result = -1;
 
   if (signal(SIGINT, SIG_IGN) != SIG_IGN)
   {

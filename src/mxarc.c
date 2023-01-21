@@ -48,7 +48,7 @@
 
 static void usage();
 static SIGT onintr();
-static int make_new_path_fixed_name();
+/* static int make_new_path_fixed_name(); */
 static void convert_seg();
 static void put_in_place();
 static void set_attrs();
@@ -92,7 +92,7 @@ char *argv[];
   int i;
   int n_archives;
   int dearc_result;
-  int rename_result;
+  int rename_result = -1;
 
   if (signal(SIGINT, SIG_IGN) != SIG_IGN)
   {

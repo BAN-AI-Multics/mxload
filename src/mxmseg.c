@@ -53,8 +53,8 @@ char *seg_type;
 #endif
 
 {
-  MXBITFILE *message_contents_file;
-  MXBITFILE *repacked_mbx_file;
+  MXBITFILE *message_contents_file = 0;
+  MXBITFILE *repacked_mbx_file = 0;
   struct PREAMBLE message_preamble;
   struct BRANCH_PREAMBLE message_branch_preamble;
   struct MXLOPTS message_retrieval_opt;
@@ -273,8 +273,8 @@ int repacking;
   char header_lines[1000];
   long mail_text_len;
   long mbx_header_n_read;
-  char print_buffer[50];
-  char ms_sender[40];
+  char print_buffer[1024];
+  char ms_sender[128];
   long ms_length;
   unsigned char ms_ring_level;
   long ms_message_id[4];      /* 18 bits stored in each long */
@@ -282,7 +282,7 @@ int repacking;
   long ms_authorization[4];   /* 18 bits stored in each long */
   long ms_access_class[4];    /* 18 bits stored in each long */
   unsigned long long_pair[2];
-  char access_class_string[50];
+  char access_class_string[128];
 
   /* 
    * If this is first message,

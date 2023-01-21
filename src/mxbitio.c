@@ -100,11 +100,7 @@ char *mode;
   {
     fprintf(stderr, "Error opening file.  No room to ");
     fprintf(stderr, "allocate mxbitfile structure.\n");
-    if (strcmp(mxbitfile->path, "-") != 0)
-    {
-      fclose(realfile);
-    }
-
+    fclose(realfile);
     return ( NULL );
   }
 

@@ -1157,7 +1157,7 @@ long charcount;
 #endif
 
 {
-  int rename_result;
+  int rename_result = -1;
 
 #ifdef SVR2
   if (( rename_result = link(temp_file_name(contents_file), new_path)) == 0)
@@ -1474,7 +1474,7 @@ char *person_id;
 #endif
 
 {
-  int chown_result;
+  int chown_result = -1;
   char owner_name[24];
   char group_name[24];
   int uid;

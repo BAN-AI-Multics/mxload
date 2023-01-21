@@ -440,8 +440,8 @@ int repack;
   char *name_type;
   char new_path[200];
   struct TXN txn;
-  MXBITFILE *contents_file;
-  MXBITFILE *repacked_file;
+  MXBITFILE *contents_file = 0;
+  MXBITFILE *repacked_file = 0;
 
   contents_file = get_temp_file("wt", "txn file contents");
   if (repack)
@@ -845,7 +845,7 @@ long charcount;
 #endif
 
 {
-  int rename_result;
+  int rename_result = -1;
 
 #ifdef SVR2
   if (( rename_result = link(temp_file_name(contents_file), new_path)) == 0)

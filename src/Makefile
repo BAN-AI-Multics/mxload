@@ -4,6 +4,11 @@ CC           ?= gcc
 ISO_ANSI_CX   = -DANSI_FUNC=1
 ##############################################################################
 MORE_CFLAGS   = -Os
+MORE_CFLAGS  += -Wall
+MORE_CFLAGS  += -Wno-unused-label
+MORE_CFLAGS  += -Wno-unused-function
+MORE_CFLAGS  += -Wno-unused-variable
+MORE_CFLAGS  += -Wno-unused-but-set-variable
 #MORE_CFLAGS += -DWORDALIGN=1
 #MORE_CFLAGS += -DHAVE_MKSTEMP=1
 ##############################################################################
